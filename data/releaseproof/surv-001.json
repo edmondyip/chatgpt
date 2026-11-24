@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "title": "SURV-001 · archived verification report",
+  "criteria": [
+    {
+      "id": "S01",
+      "label": "Dependency installation",
+      "status": "PASS",
+      "note": "Exact versions installed, lockfile retained. A clean `npm ci --offline` from the populated cache installed 273 packages. npm skipped the optional fsevents install script.",
+      "evidence": []
+    },
+    {
+      "id": "S02",
+      "label": "Strict type check",
+      "status": "PASS",
+      "note": "`npm run check` reported zero errors, warnings or hints.",
+      "evidence": []
+    },
+    {
+      "id": "S03",
+      "label": "Production build",
+      "status": "PASS",
+      "note": "`npm run build` generated five HTML pages and a sitemap in `dist/`.",
+      "evidence": []
+    },
+    {
+      "id": "S04",
+      "label": "Navigation",
+      "status": "PASS",
+      "note": "Followed all four header links and returned home by the wordmark at both widths. Checked every page link, its HTTP response and each fragment target.",
+      "evidence": []
+    },
+    {
+      "id": "S05",
+      "label": "Console and resources",
+      "status": "PASS",
+      "note": "No browser console errors, uncaught exceptions, failed requests or HTTP errors during the two route sweeps.",
+      "evidence": []
+    },
+    {
+      "id": "S06",
+      "label": "Desktop layout",
+      "status": "PASS",
+      "note": "Inspected the 1440 × 1000 homepage. All five pages fit the viewport without horizontal scrolling.",
+      "evidence": [
+        {
+          "file": "desktop.png",
+          "width": 1440,
+          "height": 1000
+        }
+      ]
+    },
+    {
+      "id": "S07",
+      "label": "Mobile layout",
+      "status": "PASS",
+      "note": "Inspected the 390 × 844 homepage in mobile Chrome emulation. Header links stayed usable and each page fit the viewport.",
+      "evidence": [
+        {
+          "file": "mobile.png",
+          "width": 390,
+          "height": 844
+        }
+      ]
+    },
+    {
+      "id": "S08",
+      "label": "Accessibility spot checks",
+      "status": "PASS",
+      "note": "First Tab exposed the skip link and Enter focused main. One h1 per route. Sample contrast ratios were 13.6:1 for body text, 6.1:1 for muted text on paper and 11.9:1 for lime on charcoal.",
+      "evidence": []
+    },
+    {
+      "id": "S09",
+      "label": "Financial integrity",
+      "status": "PASS",
+      "note": "Both period records contain null monetary fields. Ledger has 17 awaiting-verification metric cells across the two periods; November coverage is outside target. In-memory fixtures checked null vs zero, held funds, partial payout, expense, refund and loss.",
+      "evidence": []
+    },
+    {
+      "id": "S10",
+      "label": "Product availability",
+      "status": "PASS",
+      "note": "Empty catalogue, no purchase or preview links. Candidate carries Proposed status. The original note illustration identifies US$20 as the target. Journal and proposal carry the US$13 test price.",
+      "evidence": []
+    },
+    {
+      "id": "S11",
+      "label": "Public content and privacy",
+      "status": "PASS",
+      "note": "Reviewed public data, documents and media. Filename and text-pattern checks on project files and generated output found no credential, private-key, bank-identifier or local-home-path matches. No customer records or private financial exports supplied.",
+      "evidence": []
+    },
+    {
+      "id": "S12",
+      "label": "Static delivery and metadata",
+      "status": "PASS",
+      "note": "HTML works on plain file hosting. No client scripts, external resource requests or cookies observed. All pages include description, canonical, Open Graph and favicon references. Sitemap has the five canonical routes. Original 1200 × 630 social image inspected locally.",
+      "evidence": []
+    },
+    {
+      "id": "S13",
+      "label": "Live hosting, live social previews, checkout and payouts",
+      "status": "NOT TESTED",
+      "note": "Owner publication and account authorization pending.",
+      "evidence": []
+    },
+    {
+      "id": "S14",
+      "label": "Physical devices, other browsers and full assistive-technology audit",
+      "status": "NOT TESTED",
+      "note": "Scope of browser checks was desktop Chrome and a 390px emulated viewport.",
+      "evidence": []
+    },
+    {
+      "id": "S15",
+      "label": "Buyer demand and time saved",
+      "status": "NOT TESTED",
+      "note": "Candidate is a proposal. SURV-002 defines the sample comparison.",
+      "evidence": []
+    }
+  ]
+}

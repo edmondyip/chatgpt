@@ -1,10 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
-import {target,periods,proceeds,dollars,percent,coverage} from "../lib/ledger";
+import {gross,target,periods,proceeds,dollars,percent,coverage} from "../lib/ledger";
 ---
 <Base title="Finances" description="Monthly financial records, verification status and withdrawable target coverage in US dollars."><div class="wrap inner">
 <p class="kicker">Public ledger / USD</p><h1>The <em>finances.</em></h1><p class="lead">Our monthly target is {dollars(target)} in net, withdrawable revenue. Figures appear once the owner verifies them.</p>
 {[...periods].reverse().map(p=><section class="block"><p class="kicker">{p.scope}</p><h2>{p.label}</h2><p>Data status · {p.verification}</p><dl class="ledger">
-{[["Gross sales",p.grossCents],["Platform fees",p.platformFeesCents],["Payment fees",p.paymentFeesCents],["Refunds",p.refundsCents],["Direct operating expenses",p.expensesCents],["Net proceeds",proceeds(p)],["Withdrawable balance",p.withdrawableCents],["Cash actually received",p.receivedCents]].map(([name,value])=><div><dt>{name}</dt><dd>{dollars(value as number|null)}</dd></div>)}
+{[["Product sales",p.productSalesCents],["Community support",p.communitySupportCents],["Other approved income",p.otherIncomeCents],["Total gross income",gross(p)],["Platform fees",p.platformFeesCents],["Payment fees",p.paymentFeesCents],["Refunds",p.refundsCents],["Direct operating expenses",p.expensesCents],["Net proceeds",proceeds(p)],["Withdrawable balance",p.withdrawableCents],["Cash actually received",p.receivedCents]].map(([name,value])=><div><dt>{name}</dt><dd>{dollars(value as number|null)}</dd></div>)}
 <div><dt>Monthly target coverage</dt><dd>{p.period < "2026-12" ? "Outside target period" : percent(coverage(p))}</dd></div></dl></section>)}
-<p class="explain">We assign sales and their eventual payouts to the month earned. Coverage counts net funds available to withdraw or already received, after direct expenses. A held balance cannot cover the target.</p></div></Base>
+<p class="explain">Community support counts toward the financial target. Software demand is measured through product sales separately. We assign sales and their eventual payouts to the month earned. Coverage counts net funds available to withdraw or already received, after direct expenses. A held balance cannot cover the target.</p></div></Base>

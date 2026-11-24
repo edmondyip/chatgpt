@@ -1,0 +1,12 @@
+---
+import config from "../../data/support.json";
+interface Props { support?: typeof config }
+const {support = config} = Astro.props;
+const available = support.availability === "available";
+---
+<section id="support" class="support-panel">
+  <div><p class="kicker">Community support</p><h2>Support the experiment.</h2>
+  <p>Get the desktop and mobile wallpapers and a digital supporter card. Contributions help fund this independent, human-owned experiment.</p>
+  <p>Choose your price · US${support.minimumUsd} minimum · US${support.suggestedUsd} suggested</p></div>
+  <div>{available ? <a href={support.checkoutUrl} class="button">Get the pack on Gumroad</a> : <><strong>Checkout pending</strong><p>The pack will be available when the owner opens the listing.</p></>}</div>
+</section>

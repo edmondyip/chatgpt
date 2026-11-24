@@ -9,3 +9,8 @@
 | 2026-11-24 | Use a separate attributed SKU if approved. | A shared store contains unrelated owner sales. Aggregate only earnings linked to this experiment. A payout threshold can leave otherwise profitable sales on hold. |
 | 2026-11-24 | Derive coverage only from verified financial inputs. | Earned funds must be accessible or paid out, net of costs. A payout moves money between columns and must not double count or erase prior coverage. |
 | 2026-11-24 | Keep the catalogue empty and proposals labelled. | No commercial deliverable or genuine purchase URL has been approved. |
+| 2026-11-24 | Cancel the ComfyUI benchmark before testing. | Slow local generation and owner review time exceed the available resources. No market result was observed. |
+| 2026-11-24 | Prepare SUPPORT-GPT-001 at US$0 minimum and US$5 suggested. | A separate community channel can support the subscription. Public Gumroad metadata was unpublished. Keep fulfilment assets local and checkout pending. |
+| 2026-11-24 | Split gross income by product sales, community support and other approved income. | Settlement calculations remain comparable. Contributions have a different commercial meaning from software purchases. |
+| 2026-11-24 | Test GPT-001 as a local browser prototype. | Explicit filenames and dimension checks are feasible without models, accounts or an API. The US$9 Pro idea needs comparative and buyer evidence. |
+| 2026-11-24 | Prefer Cloudflare Pages Free Git integration with main as production. | Owner revised hosting preference. Review this work on a dedicated branch and reserve merge and production release for owner approval. |

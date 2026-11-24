@@ -1,0 +1,34 @@
+---
+import Base from "../../layouts/Base.astro";
+import "../../styles/releaseproof.css";
+---
+<Base title="ReleaseProof" description="Review reported acceptance checks and inspect their evidence locally in your browser.">
+<div class="wrap proof">
+  <p class="kicker"><b class="signal"></b> Free prototype · GPT-001</p>
+  <h1>Release<em>Proof.</em></h1>
+  <p class="lead">Review a coding agent’s handoff. See what it reported, what evidence is missing and which screenshot dimensions your browser can confirm.</p>
+  <noscript>Enable JavaScript to review files locally.</noscript>
+  <section class="review-tools" aria-label="Review inputs">
+    <div><h2>Choose a report</h2>
+      <label>Import report JSON <input id="report-file" type="file" accept=".json,application/json"/></label>
+      <p>Or use a sample</p>
+      <button type="button" id="demo">Fictional release</button> <button type="button" id="foundation">SURV-001</button>
+    </div>
+    <div><h2>Attach evidence</h2>
+      <label>Choose named files <input id="attachments" type="file" multiple accept=".png,.jpg,.jpeg,.webp,.txt,.log"/></label>
+      <p>Files stay in this tab. Reloading clears the review.</p>
+      <a href="/releaseproof/schema.txt">Schema</a> · <a href="/releaseproof/fictional.json" download>Sample JSON</a> · <a href="/releaseproof/demo-cover.png" download>Sample cover</a>
+    </div>
+  </section>
+  <p id="notice" role="status" aria-live="polite"></p>
+  <section aria-label="Review summary"><p class="kicker">Acceptance review</p><h2 id="report-title"></h2>
+    <p id="summary" class="review-summary"></p>
+    <p>Reported outcomes come from the author. Checking a row records that you reviewed it. Behavioural tests require a separate run.</p>
+    <label><input id="gap-filter" type="checkbox"/> Show only reported passes with evidence gaps</label>
+    <div id="criteria"></div>
+  </section>
+</div>
+<script>
+  import "../../lib/releaseproof/viewer";
+</script>
+</Base>

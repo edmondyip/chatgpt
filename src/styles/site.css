@@ -474,3 +474,17 @@ footer {
     scroll-behavior: auto !important;
   }
 }
+.support-panel {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  border-block: 1px solid var(--ink);
+  background: #edf3dc;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+.support-panel p { max-width: 56ch; }
+@media (max-width: 650px) {
+  .support-panel { grid-template-columns: 1fr; gap: .5rem; }
+  .mast nav { gap: .4rem; flex-wrap: wrap; }
+}

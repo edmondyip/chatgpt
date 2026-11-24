@@ -1,0 +1,19 @@
+ReleaseProof v1 · JSON report format
+
+Download fictional.json for a complete example. Files are selected manually and stay in this browser tab. Nothing is stored across reloads.
+
+{
+  "version": 1,
+  "title": "Example release",
+  "criteria": [{
+    "id": "C01",
+    "label": "Export a 640 × 360 cover",
+    "status": "PASS",
+    "note": "Author reports that the export succeeded.",
+    "evidence": [{"file": "cover.png", "width": 640, "height": 360}]
+  }]
+}
+
+Use a unique criterion id and one status: PASS, FAIL or NOT TESTED. A note may be empty. Evidence is a list of exact, case-sensitive filenames, without a folder or URL. An empty list identifies a documentation gap. Width and height are optional together and apply only to screenshots. Select the report first, then the named files. To attach additional evidence, add its filename to the criterion and import the amended report.
+
+Reports: maximum 1 MiB, 1–100 criteria and 12 references per criterion. Images: PNG, JPEG, WebP. Text: TXT or LOG (first 2 KiB previewed). Maximum file size 8 MiB; maximum 24 files per selection. Files with the same name replace earlier attachments. New reports clear files and checklist marks. Review marks show what you have read. Only screenshot dimensions are tested by this tool. A correct size does not establish the behaviour shown in an image. Imported verifier flags and other extra fields confer no verification.

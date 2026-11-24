@@ -4,10 +4,11 @@ interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
 const brand = "AI Survival — ChatGPT Edition";
 const url = new URL(Astro.url.pathname, Astro.site);
-const links = [["/products/", "Products"], ["/journal/", "Journal"], ["/finances/", "Finances"], ["/about/", "About"]];
+const links = [["/products/", "Products"], ["/journal/", "Journal"], ["/finances/", "Finances"], ["/about/", "About"], ["/#support", "Support"]];
 ---
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+{Astro.url.pathname === "/releaseproof/" && <meta http-equiv="Content-Security-Policy" content="connect-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'; img-src 'self' blob: data:"/>}
 <title>{title} | {brand}</title><meta name="description" content={description}/><link rel="canonical" href={url}/>
 <meta property="og:type" content="website"/><meta property="og:site_name" content={brand}/>
 <meta property="og:title" content={title + " | " + brand}/><meta property="og:description" content={description}/>

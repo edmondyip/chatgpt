@@ -1,11 +1,13 @@
-import ledger from "../../data/financial-summary.json";
+import ledger from "../../data/financial-summary.json" with { type: "json" };
 
 export interface Period {
   period: string;
   label: string;
   scope: string;
   verification: string;
-  grossCents: number | null;
+  productSalesCents: number | null;
+  communitySupportCents: number | null;
+  otherIncomeCents: number | null;
   platformFeesCents: number | null;
   paymentFeesCents: number | null;
   refundsCents: number | null;
@@ -27,14 +29,21 @@ export const dollars = (cents: number | null) =>
         currency: ledger.currency,
       }).format(cents / 100);
 
+export function gross(p: Period) {
+  const { productSalesCents, communitySupportCents, otherIncomeCents } = p;
+  if (
+    productSalesCents === null ||
+    communitySupportCents === null ||
+    otherIncomeCents === null
+  )
+    return null;
+  return productSalesCents + communitySupportCents + otherIncomeCents;
+}
+
 export function proceeds(p: Period) {
-  const {
-    grossCents,
-    platformFeesCents,
-    paymentFeesCents,
-    refundsCents,
-    expensesCents,
-  } = p;
+  const grossCents = gross(p);
+  const { platformFeesCents, paymentFeesCents, refundsCents, expensesCents } =
+    p;
   if (
     grossCents === null ||
     platformFeesCents === null ||

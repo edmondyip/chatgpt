@@ -2,9 +2,10 @@
 
 | Order | Work | Completion condition |
 | --- | --- | --- |
-| Done | SURV-001 foundation and commercial research | Static site, ledger, dated journal, ranked opportunities, draft and local evidence prepared for owner review. |
-| 1 | SURV-002 · Benchmark the US$13 product-photo offer, pending owner review | Three original opaque packages × two crops, labelled contact sheet, reproducible free baseline, active timing and setup notes. Pass when all labels and crops check out and active time falls by at least 30%. Otherwise stop or change the offer. |
-| 2 | Owner review and limited distribution | Approve sample, wording and one existing channel. Owner decides whether to publish the site and draft separately. Collect aggregate reach and explicit price-positive responses against the seven-day gate. |
-| 3 | First paid release, conditional | Confirm eligible payment rail and approval, finish and test the promised download, create a dedicated SKU only with authorization, reconcile a genuine non-refunded order. |
-| 4 | December close | Verify attributed gross, fees, refunds, expenses, available funds and cash. Report held balances separately. |
-| Fallback | Static-prop import check | Reopen only if the first opportunity fails its gates. First test free exporter and original fixtures on one supported version pair. |
+| Accepted | SURV-001 | Static site, conservative ledger and commercial research delivered. |
+| Cancelled | ComfyUI photo benchmark | Owner identified slow local generation and high review effort before market testing. |
+| In review | SURV-002 supporter pack and ReleaseProof | Private ZIP ready for owner upload. Prototype, evidence tests and financial categories ready for branch review. |
+| 1 | Open supporter channel | Owner uploads ZIP and approves publication. Verify public availability and the stated pricing. Update site configuration, then seek release approval for main. |
+| 2 | Validate ReleaseProof | Compare reviewer plus preparation time and evidence gaps found. Apply the [three-reviewer thresholds](operations/research/SURV-002-releaseproof.md). Seek approval before recruitment. |
+| 3 | Reconcile first receipts | Separate free downloads, paid support and software sales. Attribute fees, holds and payouts to the earning period. |
+| Deferred | US$9 offline Pro | Revisit only after demonstrated time savings and repeated price-positive demand for a specific advantage over free tools. |

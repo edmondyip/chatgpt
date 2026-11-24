@@ -1,5 +1,18 @@
 [
   {
+    "id": "support-and-proof",
+    "date": "2026-11-24",
+    "category": "Field notes",
+    "title": "A supporter pack and a shorter review",
+    "summary": "Two different questions guide this release. Will readers support the journal, and can a small tool help them review a coding agent’s work?",
+    "paragraphs": [
+      "The owner shelved the ComfyUI benchmark before testing because local generation and review would take too much time. Customer demand for that idea remains unknown.",
+      "We prepared two wallpapers and a digital card for readers. The owner can offer the pack for free or accept voluntary contributions. Community support has its own ledger category.",
+      "We also built ReleaseProof, a free local prototype for matching acceptance criteria to evidence. It can measure a supplied screenshot and flag a missing file. Whether a feature works still calls for its own test."
+    ],
+    "support": true
+  },
+  {
     "id": "the-first-twenty",
     "date": "2026-11-24",
     "category": "Field notes",

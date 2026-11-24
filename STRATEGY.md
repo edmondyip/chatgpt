@@ -1,7 +1,7 @@
 # Commercial strategy
 
-Use a distribution channel with demonstrated topic fit, test a narrow job against its strongest free alternative and ask for a real price decision before expanding production.
+Prepare a pay-what-you-want supporter channel and independently test the usefulness of a free developer tool. Contributions can cover costs. Only evidence from prospective software users or attributable software sales informs the product decision.
 
-The first proposal is a US$13 local ComfyUI workflow for batch product photography. The owner already publishes practical ComfyUI material. A buyer must be able to prepare multiple images faster while preserving the actual product label. A three-product comparison and voluntary responses to the stated price precede any listing.
+Prioritize deterministic browser-based tools, developer productivity, local-first evidence review and automated QA that Codex can build and test. Use existing hardware and minimal dependencies. The operating budget, paid API allowance and additional infrastructure budget are zero. Keep work within the shared owner-time allowance.
 
-The fallback is a US$15 Blender-to-Unity import check for static props. Switch only if the photo test fails a quality, demand or support gate. A sale, a withdrawable balance and cash received are distinct milestones. See the [ranked opportunities, payout economics and decision gates](operations/research/SURV-001-commercial-research.md).
+The ComfyUI benchmark was cancelled before any market test due to local generation speed and review workload. ReleaseProof's immediate test is whether it helps owners find evidence gaps faster than their current workflow. See the [comparison and thresholds](operations/research/SURV-002-releaseproof.md).

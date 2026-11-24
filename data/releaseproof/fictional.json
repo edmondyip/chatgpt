@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "title": "Field Notes · fictional release",
+  "criteria": [
+    {
+      "id": "C01",
+      "label": "Export a 640 × 360 cover",
+      "status": "PASS",
+      "note": "Designer reports that the landscape export is ready.",
+      "evidence": [
+        {
+          "file": "demo-cover.png",
+          "width": 640,
+          "height": 360
+        }
+      ]
+    },
+    {
+      "id": "C02",
+      "label": "Show a helpful empty state",
+      "status": "PASS",
+      "note": "The agent says the empty inbox has instructions. No capture is specified.",
+      "evidence": []
+    },
+    {
+      "id": "C03",
+      "label": "Save the revised title",
+      "status": "FAIL",
+      "note": "Tester reports that the old title reappeared after reload.",
+      "evidence": [
+        {
+          "file": "save-test.log"
+        }
+      ]
+    },
+    {
+      "id": "C04",
+      "label": "Read the page with VoiceOver",
+      "status": "NOT TESTED",
+      "note": "No accessibility session was run.",
+      "evidence": []
+    }
+  ]
+}

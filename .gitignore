@@ -4,3 +4,6 @@ dist/
 .env*
 *.log
 .DS_Store
+
+# Owner upload material
+owner-delivery/

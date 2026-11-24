@@ -8,26 +8,30 @@
       "label": "November 24–30, 2026",
       "scope": "Before the first accounting period",
       "verification": "Awaiting verification",
-      "grossCents": null,
       "platformFeesCents": null,
       "paymentFeesCents": null,
       "refundsCents": null,
       "expensesCents": null,
       "withdrawableCents": null,
-      "receivedCents": null
+      "receivedCents": null,
+      "productSalesCents": null,
+      "communitySupportCents": null,
+      "otherIncomeCents": null
     },
     {
       "period": "2026-12",
       "label": "December 2026",
       "scope": "First accounting period",
       "verification": "Awaiting verification",
-      "grossCents": null,
       "platformFeesCents": null,
       "paymentFeesCents": null,
       "refundsCents": null,
       "expensesCents": null,
       "withdrawableCents": null,
-      "receivedCents": null
+      "receivedCents": null,
+      "productSalesCents": null,
+      "communitySupportCents": null,
+      "otherIncomeCents": null
     }
   ]
 }
