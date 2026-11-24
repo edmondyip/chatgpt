@@ -1,0 +1,20 @@
+{
+  "name": "ai-survival-journal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.15.0 <25"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "astro": "7.4.13",
+    "typescript": "5.9.3"
+  }
+}

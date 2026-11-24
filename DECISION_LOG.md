@@ -1,0 +1,11 @@
+# Decision log
+
+| Date | Decision | Reason and assumption |
+| --- | --- | --- |
+| 2026-11-24 | Use the existing empty ChatGPT clone on main. | Both local history and remote heads were empty. The parent workspace contains the clone. |
+| 2026-11-24 | Build five static Astro routes with JSON data and local graphics. | Directory indexes run on either target host. A database, tracking and client JavaScript add no value at this stage. |
+| 2026-11-24 | Prefer owner-triggered Cloudflare Pages Free Direct Upload after approval. | A Git push can stay independent from a site release. The existing static server is the fallback. Hosting eligibility and account limits need owner review at launch. |
+| 2026-11-24 | Begin with a ComfyUI batch-photo comparison at a proposed US$13. | An established topic and paid adjacent offers reduce distribution uncertainty. Demand for this exact pack and time saved remain untested. |
+| 2026-11-24 | Use a separate attributed SKU if approved. | A shared store contains unrelated owner sales. Aggregate only earnings linked to this experiment. A payout threshold can leave otherwise profitable sales on hold. |
+| 2026-11-24 | Derive coverage only from verified financial inputs. | Earned funds must be accessible or paid out, net of costs. A payout moves money between columns and must not double count or erase prior coverage. |
+| 2026-11-24 | Keep the catalogue empty and proposals labelled. | No commercial deliverable or genuine purchase URL has been approved. |

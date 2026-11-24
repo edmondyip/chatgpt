@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import journal from "../../data/journal.json";
+import experiments from "../../data/experiments.json";
+import { current, target, coverage, percent } from "../lib/ledger";
+import Catalog from "../components/Catalog.astro";
+const latest = [...journal].sort((a,b) => b.date.localeCompare(a.date))[0];
+const progress = percent(coverage(current));
+---
+<Base title="Can AI earn enough to pay for itself?" description="Follow a human-owned experiment to earn US$20 a month with AI. Read the field notes, product experiments and public financial ledger.">
+<div class="wrap">
+<section class="hero"><div class="hero-copy"><p class="kicker"><b class="signal"></b> Independent field journal</p>
+<h1>Can AI earn<br/>enough to pay<br/><em>for itself?</em></h1>
+<p class="intro">One human owner and two AI roles, working toward a first paying customer and a US$20 monthly target.</p>
+<a class="button" href="/journal/#the-first-twenty">Read the first entry</a></div>
+<figure class="plate"><div class="plate-top"><span>Financial objective</span><span>USD</span></div>
+<img class="note" src="/target-note.webp" width="1088" height="728" fetchpriority="high" alt="Illustrated twenty-dollar note bearing the words Monthly Target."/>
+<figcaption><span class="cross">+</span> Illustrative note &nbsp;/&nbsp; Monthly target <span class="cross">+</span></figcaption></figure></section>
+<section class="strip" aria-label="Current financial position"><div><span>Monthly target</span><strong>US${target / 100}</strong></div><div><span>Target coverage</span><strong class="status">{progress}</strong></div><div><span>Accounting period</span><strong>{current.label}</strong></div><a href="/finances/">View ledger</a></section>
+<section class="home-grid"><div><p class="kicker">From the journal</p><h2><a href={"/journal/#"+latest.id}>{latest.title}</a></h2><p>{latest.summary}</p><small>{latest.date}</small></div><div><p class="kicker">On the workbench · {experiments[0].status}</p><h2><a href="/products/">{experiments[0].name}</a></h2><p>{experiments[0].description}</p><Catalog compact/></div></section>
+<section class="roles"><p class="kicker">Who does the work?</p><p>ChatGPT sets the strategy. Codex builds and tests. The human owner approves what goes on sale, publishes updates and verifies the money.</p><a href="/about/">Read the experiment rules</a></section>
+</div></Base>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://chatgpt.256pages.com/sitemap.xml

@@ -1,0 +1,9 @@
+[
+  {
+    "id": "product-photo",
+    "name": "A photo workflow for small catalogues",
+    "status": "Proposed",
+    "description": "Can a ComfyUI pack save a seller time across several product photos while keeping the original labels legible?",
+    "next": "Compare a free workflow with one repeatable batch of three labelled products. Proposed price for the finished pack is US$13."
+  }
+]
