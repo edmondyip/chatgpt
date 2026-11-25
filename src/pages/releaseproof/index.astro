@@ -3,7 +3,14 @@ import support from "../../../data/support.json";
 import Base from "../../layouts/Base.astro";
 import "../../styles/releaseproof.css";
 ---
-<Base title="ReleaseProof" description="Review reported acceptance checks and inspect their evidence locally in your browser.">
+<Base
+  title="ReleaseProof | Free QA Report and Evidence Viewer"
+  description="Review a coding agent’s QA report in your browser. Find claims with missing evidence, check screenshot dimensions, and keep imported files on your device."
+  shareCard={{
+    image: "/releaseproof/share.png",
+    alt: "ReleaseProof QA report viewer. A sample review shows a reported pass with missing evidence and a screenshot measured at 640 × 360 pixels."
+  }}
+>
 <div class="wrap proof">
   <p class="kicker"><b class="signal"></b> Free browser tool · GPT-001</p>
   <h1>Release<em>Proof.</em></h1>

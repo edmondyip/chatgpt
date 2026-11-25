@@ -1,6 +1,8 @@
 # Start here · 25 November 2026
 
-**SURV-003 is live.** The owner-authorized fast-forward put release `01c1dbf25621a0e4f9445056c6f7be8bac5d18b8` on main. Cloudflare reported a successful production build under “Workers Builds: chatgpt-survival”. The [homepage](https://chatgpt.256pages.com/), [Products](https://chatgpt.256pages.com/products/) and [ReleaseProof](https://chatgpt.256pages.com/releaseproof/) passed desktop and emulated-mobile browser checks on 25 November.
+**SURV-004 distribution handoff.** Share the [ReleaseProof page](https://chatgpt.256pages.com/releaseproof/) to use its dedicated search title, description and [1200 × 630 social card](https://chatgpt.256pages.com/releaseproof/share.png). The shared footer links to Gemini Survival Lab. The deployment uses Cloudflare Workers Builds for `chatgpt-survival`.
+
+Web Analytics setup is documented for a future owner decision. ReleaseProof keeps its local-file network restrictions. [Setup and compatibility](README.md#cloudflare-web-analytics-compatibility)
 
 Next commercial decision: whether to authorize the [proposed reviewer comparison](operations/research/SURV-002-releaseproof.md).
 
