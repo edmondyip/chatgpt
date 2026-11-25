@@ -1,3 +1,4 @@
+import { trackDemo } from "../analytics";
 import fictional from "../../../data/releaseproof/fictional.json";
 import foundation from "../../../data/releaseproof/surv-001.json";
 import {
@@ -15,6 +16,14 @@ const attachmentInput = get("attachments") as HTMLInputElement;
 const files = new Map<string, Attachment>();
 const reviewed = new Set<string>();
 const gapFilter = get("gap-filter") as HTMLInputElement;
+let demoActive = false;
+let demoStarted = false;
+let demoCompleted = false;
+function startDemoReview() {
+  if (demoActive && !demoStarted) {
+    demoStarted = trackDemo("demo_start");
+  }
+}
 let report = parseReport(fictional);
 
 function element<K extends keyof HTMLElementTagNameMap>(
@@ -56,8 +65,13 @@ function renderRow(row: Criterion) {
   box.type = "checkbox";
   box.checked = reviewed.has(row.id);
   box.addEventListener("change", () => {
+    startDemoReview();
     if (box.checked) reviewed.add(row.id);
     else reviewed.delete(row.id);
+    if (demoActive && !demoCompleted && reviewed.size === report.criteria.length) {
+      demoCompleted = true;
+      trackDemo("demo_complete");
+    }
     summary();
   });
   const label = element("label");
@@ -113,6 +127,9 @@ function replaceReport(next: Report) {
   files.clear();
   reviewed.clear();
   gapFilter.checked = false;
+  demoActive = false;
+  demoStarted = false;
+  demoCompleted = false;
   report = next;
   draw();
   say("Loaded report. Select its evidence files to review the claims.");
@@ -192,9 +209,10 @@ attachmentInput.addEventListener(
   "change",
   () => void importing(() => attach(Array.from(attachmentInput.files ?? []))),
 );
-gapFilter.addEventListener("change", draw);
+gapFilter.addEventListener("change", () => { startDemoReview(); draw(); });
 async function openDemo() {
   replaceReport(parseReport(fictional));
+  demoActive = true;
   const cover = get("demo-cover") as HTMLImageElement;
   await cover.decode();
   files.set("demo-cover.png", {

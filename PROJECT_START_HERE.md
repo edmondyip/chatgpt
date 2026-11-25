@@ -2,7 +2,7 @@
 
 **SURV-004 distribution handoff.** Share the [ReleaseProof page](https://chatgpt.256pages.com/releaseproof/) to use its dedicated search title, description and [1200 × 630 social card](https://chatgpt.256pages.com/releaseproof/share.png). The shared footer links to Gemini Survival Lab. The deployment uses Cloudflare Workers Builds for `chatgpt-survival`.
 
-Web Analytics setup is documented for a future owner decision. ReleaseProof keeps its local-file network restrictions. [Setup and compatibility](README.md#cloudflare-web-analytics-compatibility)
+SURV-005 integrates optional GA4 usage measurement. The shared footer reopens analytics preferences. ReleaseProof keeps its file-review document isolated from analytics collection. Cloudflare Web Analytics remains a separate, unactivated option. [Setup and compatibility](README.md#cloudflare-web-analytics-compatibility)
 
 Next commercial decision: whether to authorize the [proposed reviewer comparison](operations/research/SURV-002-releaseproof.md).
 

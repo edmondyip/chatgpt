@@ -49,3 +49,21 @@ Run the preview commands above and open `/releaseproof/`. The fictional report a
 Production serves Astro’s static HTML on the Cloudflare-proxied hostname `chatgpt.256pages.com`. GitHub reports the integration as **Workers Builds: chatgpt-survival**. The inspected production response permits HTML transformation, and its markup contained no Cloudflare analytics beacon. ReleaseProof sets `connect-src 'none'` to keep its local file review isolated. That policy also blocks analytics submissions from the tool page.
 
 If the owner authorizes analytics for the public journal, open **Web Analytics → Add a site** in Cloudflare, select the exact production hostname and choose **Done**. Under **Manage site → Advanced options → Add rule**, configure a rule excluding `/releaseproof/*` to preserve the tool’s local-only behaviour. If path exclusions are unavailable, select manual snippet installation and include the supplied snippet only on the approved journal pages in a separately authorized release. A browser visit to an included page should produce a beacon request and a dashboard visit after processing. Check that the tool page still runs without analytics. This requires no Astro package or backend. [Cloudflare setup](https://developers.cloudflare.com/web-analytics/get-started/) · [Path rules](https://developers.cloudflare.com/web-analytics/configuration-options/rules/)
+
+
+## Optional GA4 analytics
+
+The shared layout asks for a choice before loading the Google tag for `G-4ZJ8QXKEXV`. The footer reopens preferences. A rejected or withdrawn choice persists locally. Withdrawal removes the analytics frame and expires the site's GA cookies. Other open tabs receive the changed choice through browser storage events.
+
+The Google tag runs in an empty same-origin document. The review page keeps its existing network policy. Analytics receives an allowlisted public route and fixed event names. Query strings, fragments, referrers, imported data and DOM contents from the review interface are excluded from event fields. Google Signals and ad personalization are disabled and all advertising consent categories are denied.
+
+| Event | Trigger after consent |
+| --- | --- |
+| `page_view` | Once per document, using its public route |
+| `tool_open` | A counted visit to ReleaseProof |
+| `demo_start` | First filter or checklist interaction in the bundled fictional demo |
+| `demo_complete` | All four fictional criteria marked reviewed, once per demo run |
+| `support_click` | Activation of the configured Gumroad link |
+| `gemini_referral_click` | Activation of the Gemini Survival Lab link |
+
+Archived and imported reports do not count as fictional demo runs. A click or completed demo does not establish a sale. Google may also emit standard engagement events.

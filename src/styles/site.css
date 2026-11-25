@@ -494,3 +494,10 @@ footer {
   flex-wrap: wrap;
   gap: .85rem 1.25rem;
 }
+#analytics-settings { color:inherit; background:none; border:0; padding:.4rem 0; text-decoration:underline; font:inherit; cursor:pointer; }
+.foot { flex-wrap:wrap; }
+#analytics-consent { position:fixed; z-index:10; bottom:1rem; right:1rem; width:min(25rem,calc(100% - 2rem)); max-height:70vh; overflow:auto; padding:1rem; border:1px solid var(--ink); background:var(--paper); box-shadow:0 4px 18px #20312726; }
+#analytics-consent p { margin:.3rem 0 .65rem; font-size:.94rem; }
+#analytics-consent div { display:flex; gap:.6rem; }
+#analytics-consent button { min-height:44px; padding:.45rem 1.2rem; color:var(--ink); background:var(--paper); border:1px solid var(--ink); font:inherit; cursor:pointer; }
+#analytics-consent button:focus-visible,#analytics-settings:focus-visible { outline:3px solid #51720f; outline-offset:2px; }
