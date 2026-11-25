@@ -1,9 +1,9 @@
 ---
 import entries from "../../data/products.json";
-interface Product { title: string; category: string; description: string; previewUrl?: string; purchaseUrl?: string }
+interface Product { title: string; category: string; description: string; toolUrl?: string; previewUrl?: string; purchaseUrl?: string }
 interface Props { compact?: boolean }
 const products: Product[] = entries;
 const {compact = false} = Astro.props;
 ---
-{products.length ? <ul>{products.map(p => <li><strong>{p.title}</strong> · {p.category}<p>{p.description}</p>{p.previewUrl && <a href={p.previewUrl}>Preview {p.title}</a>} {p.purchaseUrl && <a href={p.purchaseUrl}>Buy {p.title}</a>}</li>)}</ul> :
+{products.length ? <ul>{products.map(p => <li><strong>{p.title}</strong> · {p.category}<p>{p.description}</p>{p.toolUrl && <a class="button" href={p.toolUrl}>Open {p.title}</a>} {p.previewUrl && <a href={p.previewUrl}>Preview {p.title}</a>} {p.purchaseUrl && <a href={p.purchaseUrl}>Buy {p.title}</a>}</li>)}</ul> :
 compact ? <small>No products released yet</small> : <p>There are no released free tools, paid downloads, web apps or prototypes yet.</p>}

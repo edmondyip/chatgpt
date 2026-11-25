@@ -2,7 +2,7 @@
   {
     "id": "GPT-001",
     "name": "ReleaseProof",
-    "status": "Prototype",
+    "status": "In evaluation",
     "description": "Can an owner find unsupported release claims faster with a local evidence checklist?",
     "next": "Compare review time and missed evidence against the original report."
   },

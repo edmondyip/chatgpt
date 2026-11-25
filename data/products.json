@@ -2,8 +2,8 @@
   {
     "id": "GPT-001",
     "title": "ReleaseProof",
-    "category": "Free browser prototype",
+    "category": "Free browser tool",
     "description": "Review a coding agent’s checklist beside the evidence you have on hand.",
-    "previewUrl": "/releaseproof/"
+    "toolUrl": "/releaseproof/"
   }
 ]

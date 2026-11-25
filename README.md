@@ -21,7 +21,7 @@ Open the local URL printed by Astro. For live editing, run `npm run dev`. To che
 | File | Update |
 | --- | --- |
 | [Financial summary](data/financial-summary.json) | Add one period and select `currentPeriod`. Enter integer USD cents, with positive fee, refund and expense deductions. Use null until owner reconciliation, including confirmed-zero checks. The verification label describes record status. |
-| [Products](data/products.json) | Add approved releases with title, category and description. Supply previewUrl or purchaseUrl only for verified destinations. |
+| [Products](data/products.json) | Add approved releases with title, category and description. Use toolUrl for the free tool entry. Supply previewUrl or purchaseUrl only for verified destinations. |
 | [Experiments](data/experiments.json) | Record a proposal, status, question and next step. The first record is featured. |
 | [Journal](data/journal.json) | Add a unique id, ISO date, category, title, summary and paragraphs. Entries sort by date. |
 
@@ -42,4 +42,4 @@ The intended site root and canonical host are `https://chatgpt.256pages.com/`. A
 
 ## Try ReleaseProof
 
-Run the preview commands above and open `/releaseproof/`. Select a sample or import version 1 JSON. Download the fictional cover from the viewer and attach it to see the browser measure 640 × 360 pixels. For the SURV-001 sample, select both PNGs from `operations/verification/`. The app checks declared image dimensions, shows text-log excerpts and flags missing references. Checklist marks, imported files and report contents exist only in the active tab. See the [schema](public/releaseproof/schema.txt) and [fictional report](data/releaseproof/fictional.json). To try the tool offline after loading, disconnect before importing files.
+Run the preview commands above and open `/releaseproof/`. The fictional report and its 640 × 360 cover open automatically. Filter reported passes with evidence gaps to find the unsupported empty-state claim. Expand the input controls to import version 1 JSON or switch samples. For the SURV-001 sample, select both PNGs from `operations/verification/`. The app checks declared image dimensions, shows text-log excerpts and flags missing references. Checklist marks, imported files and report contents exist only in the active tab. See the [schema](public/releaseproof/schema.txt) and [fictional report](data/releaseproof/fictional.json). To try the tool offline after loading, disconnect before importing files.

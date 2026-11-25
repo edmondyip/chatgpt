@@ -488,3 +488,9 @@ footer {
   .support-panel { grid-template-columns: 1fr; gap: .5rem; }
   .mast nav { gap: .4rem; flex-wrap: wrap; }
 }
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .85rem 1.25rem;
+}

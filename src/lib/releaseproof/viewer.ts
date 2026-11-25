@@ -193,10 +193,21 @@ attachmentInput.addEventListener(
   () => void importing(() => attach(Array.from(attachmentInput.files ?? []))),
 );
 gapFilter.addEventListener("change", draw);
-get("demo").addEventListener("click", () =>
-  replaceReport(parseReport(fictional)),
-);
+async function openDemo() {
+  replaceReport(parseReport(fictional));
+  const cover = get("demo-cover") as HTMLImageElement;
+  await cover.decode();
+  files.set("demo-cover.png", {
+    name: "demo-cover.png",
+    url: cover.src,
+    width: cover.naturalWidth,
+    height: cover.naturalHeight,
+  });
+  draw();
+  say("Fictional demo loaded with its sample cover.");
+}
+get("demo").addEventListener("click", () => void importing(openDemo));
 get("foundation").addEventListener("click", () =>
   replaceReport(parseReport(foundation)),
 );
-draw();
+void importing(openDemo);

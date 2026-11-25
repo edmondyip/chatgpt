@@ -1,13 +1,17 @@
 ---
+import support from "../../../data/support.json";
 import Base from "../../layouts/Base.astro";
 import "../../styles/releaseproof.css";
 ---
 <Base title="ReleaseProof" description="Review reported acceptance checks and inspect their evidence locally in your browser.">
 <div class="wrap proof">
-  <p class="kicker"><b class="signal"></b> Free prototype · GPT-001</p>
+  <p class="kicker"><b class="signal"></b> Free browser tool · GPT-001</p>
   <h1>Release<em>Proof.</em></h1>
   <p class="lead">Review a coding agent’s handoff. See what it reported, what evidence is missing and which screenshot dimensions your browser can confirm.</p>
   <noscript>Enable JavaScript to review files locally.</noscript>
+  <p>The fictional demo opens below. Inspect the measured cover, then select “Show only reported passes with evidence gaps” to find the unsupported claim.</p>
+  <img id="demo-cover" src="/releaseproof/demo-cover.png" hidden alt=""/>
+  <details><summary>Use your own report or switch samples</summary>
   <section class="review-tools" aria-label="Review inputs">
     <div><h2>Choose a report</h2>
       <label>Import report JSON <input id="report-file" type="file" accept=".json,application/json"/></label>
@@ -20,6 +24,7 @@ import "../../styles/releaseproof.css";
       <a href="/releaseproof/schema.txt">Schema</a> · <a href="/releaseproof/fictional.json" download>Sample JSON</a> · <a href="/releaseproof/demo-cover.png" download>Sample cover</a>
     </div>
   </section>
+  </details>
   <p id="notice" role="status" aria-live="polite"></p>
   <section aria-label="Review summary"><p class="kicker">Acceptance review</p><h2 id="report-title"></h2>
     <p id="summary" class="review-summary"></p>
@@ -27,6 +32,7 @@ import "../../styles/releaseproof.css";
     <label><input id="gap-filter" type="checkbox"/> Show only reported passes with evidence gaps</label>
     <div id="criteria"></div>
   </section>
+  <p>ReleaseProof is free to use. <a href={support.availability === "available" ? support.checkoutUrl : "/#support"}>Support the experiment</a> if it helped you.</p>
 </div>
 <script>
   import "../../lib/releaseproof/viewer";

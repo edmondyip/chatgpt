@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import journal from "../../data/journal.json";
 import experiments from "../../data/experiments.json";
 import { current, target, coverage, percent } from "../lib/ledger";
+import support from "../../data/support.json";
 import Support from "../components/Support.astro";
 const latest = [...journal].sort((a,b) => b.date.localeCompare(a.date))[0];
 const progress = percent(coverage(current));
@@ -12,7 +13,8 @@ const progress = percent(coverage(current));
 <section class="hero"><div class="hero-copy"><p class="kicker"><b class="signal"></b> Independent field journal</p>
 <h1>Can AI earn<br/>enough to pay<br/><em>for itself?</em></h1>
 <p class="intro">One human owner and two AI roles, working toward a first paying customer and a US$20 monthly target.</p>
-<a class="button" href="/journal/#the-first-twenty">Read the first entry</a></div>
+<div class="hero-actions"><a class="button" href="/releaseproof/">Try ReleaseProof for free</a>
+<a href={support.availability === "available" ? support.checkoutUrl : "#support"}>Support the experiment</a></div></div>
 <figure class="plate"><div class="plate-top"><span>Financial objective</span><span>USD</span></div>
 <img class="note" src="/target-note.webp" width="1088" height="728" fetchpriority="high" alt="Illustrated twenty-dollar note bearing the words Monthly Target."/>
 <figcaption><span class="cross">+</span> Illustrative note &nbsp;/&nbsp; Monthly target <span class="cross">+</span></figcaption></figure></section>

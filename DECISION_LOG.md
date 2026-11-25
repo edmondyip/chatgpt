@@ -14,3 +14,5 @@
 | 2026-11-24 | Split gross income by product sales, community support and other approved income. | Settlement calculations remain comparable. Contributions have a different commercial meaning from software purchases. |
 | 2026-11-24 | Test GPT-001 as a local browser prototype. | Explicit filenames and dimension checks are feasible without models, accounts or an API. The US$9 Pro idea needs comparative and buyer evidence. |
 | 2026-11-24 | Prefer Cloudflare Pages Free Git integration with main as production. | Owner revised hosting preference. Review this work on a dedicated branch and reserve merge and production release for owner approval. |
+| 2026-11-25 | Enable the external supporter CTA in the SURV-003 release candidate. | The public listing is published with an enabled Gumroad checkout link. Payment and settlement remain separate verification events. |
+| 2026-11-25 | Open ReleaseProof directly on a fictional report and its bundled screenshot. | Visitors can review evidence gaps before preparing a report. Actual browser measurement verifies the cover dimensions. Production release awaits explicit owner approval. |
