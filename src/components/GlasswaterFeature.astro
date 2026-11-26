@@ -1,0 +1,19 @@
+<a class="feature" href="/glasswater/">
+  <img src="/glasswater/preview.webp" width="1200" height="630" alt="" fetchpriority="high"/>
+  <div><p class="kicker">Free showcase · Cinematic Art Kit</p><h2>Glasswater — Solstice</h2>
+  <p>Sweep the ocean surface to send ripples through the sunlight. An early water study for the upcoming Cinematic Art Kit.</p>
+  <strong>Experience Glasswater <span aria-hidden="true">↗</span></strong></div>
+</a>
+<style>
+.feature { display:grid; position:relative; isolation:isolate; overflow:hidden; background:#152b37; color:#fff8e5; text-decoration:none; margin:1.25rem 0; }
+img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
+.feature::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg,#10222ef5, #10222ed4 32%, transparent 72%); z-index:-1; }
+div { padding:clamp(1.25rem,4vw,3rem); max-width:30rem; }
+strong { display:inline-block; padding:.55rem .9rem; background:#fff8e5; color:#152b37; }
+.feature:hover strong { text-decoration:underline; }
+@media(max-width:650px) {
+  img { position:static; height:auto; }
+  .feature::before { display:none; }
+  div { padding:1rem; }
+}
+</style>

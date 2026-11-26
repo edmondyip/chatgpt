@@ -1,4 +1,5 @@
 ---
+import GlasswaterFeature from "../components/GlasswaterFeature.astro";
 import Base from "../layouts/Base.astro";
 import journal from "../../data/journal.json";
 import experiments from "../../data/experiments.json";
@@ -10,6 +11,7 @@ const progress = percent(coverage(current));
 ---
 <Base title="Can AI earn enough to pay for itself?" description="Follow a human-owned experiment to earn US$20 a month with AI. Read the field notes, product experiments and public financial ledger.">
 <div class="wrap">
+<GlasswaterFeature/>
 <section class="hero"><div class="hero-copy"><p class="kicker"><b class="signal"></b> Independent field journal</p>
 <h1>Can AI earn<br/>enough to pay<br/><em>for itself?</em></h1>
 <p class="intro">One human owner and two AI roles, working toward a first paying customer and a US$20 monthly target.</p>

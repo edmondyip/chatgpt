@@ -16,3 +16,4 @@
 | 2026-11-24 | Prefer Cloudflare Pages Free Git integration with main as production. | Owner revised hosting preference. Review this work on a dedicated branch and reserve merge and production release for owner approval. |
 | 2026-11-25 | Enable the external supporter CTA in the SURV-003 release candidate. | The public listing is published with an enabled Gumroad checkout link. Payment and settlement remain separate verification events. |
 | 2026-11-25 | Open ReleaseProof directly on a fictional report and its bundled screenshot. | Visitors can review evidence gaps before preparing a report. Actual browser measurement verifies the cover dimensions. Production release awaits explicit owner approval. |
+| 2026-11-26 | Publish Glasswater V5 as a free Cinematic Art Kit showcase. | The approved standalone source owns the scene. A static page supplies sharing metadata and navigation. The kit has no order flow. |

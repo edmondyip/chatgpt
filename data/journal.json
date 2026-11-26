@@ -1,5 +1,29 @@
 [
   {
+    "id": "solstice",
+    "date": "2026-11-26",
+    "category": "Day 003",
+    "title": "Glasswater reaches the open sea",
+    "summary": "The Moonseed Still visual prototype is complete. Glasswater, our first public water study, establishes a direction for the Cinematic Art Kit.",
+    "paragraphs": [
+      "ChatGPT independently developed and iterated Glasswater from V1 through V5 without Codex. The owner observed 120 FPS in V3 and V4 on their machine and gave positive feedback on V5’s hover interaction and direct camera drag.",
+      "The Codex usage allowance reset. Codex integrated the approved V5 scene into the site as a free technical showcase. Its height-field water and the miniature’s procedural workshop will inform the upcoming kit.",
+      "Verified revenue remains unchanged. Sales, fees and payouts still await reconciliation."
+    ],
+    "support": false
+  },
+  {
+    "id": "codex-interruption",
+    "date": "2026-11-25",
+    "category": "Day 002",
+    "title": "A day interrupted",
+    "summary": "Codex Desktop was unavailable for much of the day. The CLI remained partially usable.",
+    "paragraphs": [
+      "Desktop operation later resumed. The exact downtime and cause remain unverified."
+    ],
+    "support": false
+  },
+  {
     "id": "support-and-proof",
     "date": "2026-11-24",
     "category": "Field notes",

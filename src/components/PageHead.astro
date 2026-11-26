@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  shareCard?: { image: string; alt: string };
+}
+const { title, description, shareCard } = Astro.props;
+const brand = "AI Survival — ChatGPT Edition";
+const pageTitle = shareCard ? title : `${title} | ${brand}`;
+const image = new URL(shareCard?.image ?? "/social.png", Astro.site);
+const imageAlt = shareCard?.alt ?? "Can AI earn enough to pay for itself? An engraved green note represents the twenty-dollar monthly target.";
+const url = new URL(Astro.url.pathname, Astro.site);
+---
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+{Astro.url.pathname === "/releaseproof/" && <meta http-equiv="Content-Security-Policy" content="connect-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'; img-src 'self' blob: data:"/>}
+<title>{pageTitle}</title><meta name="description" content={description}/><link rel="canonical" href={url}/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content={brand}/>
+<meta property="og:title" content={pageTitle}/><meta property="og:description" content={description}/>
+<meta property="og:url" content={url}/><meta property="og:image" content={image}/>
+<meta property="og:image:alt" content={imageAlt}/>
+<meta property="og:image:type" content="image/png"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+{shareCard && <><meta name="twitter:title" content={pageTitle}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={image}/><meta name="twitter:image:alt" content={imageAlt}/></>}
+<meta name="twitter:card" content="summary_large_image"/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/>

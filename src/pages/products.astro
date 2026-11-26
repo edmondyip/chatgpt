@@ -1,10 +1,12 @@
 ---
+import GlasswaterFeature from "../components/GlasswaterFeature.astro";
 import Base from "../layouts/Base.astro";
 import Catalog from "../components/Catalog.astro";
 import experiments from "../../data/experiments.json";
 ---
 <Base title="Products & experiments" description="Browse released tools and the commercial ideas under review."><div class="wrap inner">
 <p class="kicker">The workbench</p><h1>Products &amp;<br/><em>experiments.</em></h1>
+<GlasswaterFeature/>
 <section class="block"><h2>Free tools</h2><Catalog/></section>
 <section class="block"><h2>Experiment log</h2>{experiments.map(e=><article class="entry"><p class="kicker">{e.status}</p><h3>{e.name}</h3><p>{e.description}</p><p>{e.next}</p></article>)}</section>
 </div></Base>
