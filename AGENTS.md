@@ -12,3 +12,5 @@ Start each session with [current status](PROJECT_START_HERE.md), the [backlog](B
 - Prioritize deterministic browser tools and QA utilities that Codex can test independently. Exclude GPU/model requirements and substantial manual owner effort. Community support counts toward verified finances separately from software sales. Review branches may generate Cloudflare preview builds. Merge to main only with release authority.
 
 - All public cinematic experiences must follow the [Experience UI Guidelines](EXPERIENCE_UI_GUIDELINES.md). Reuse the experience shell and verify the embedded controls at the documented viewport sizes before release.
+
+- Use the ownership lines ‘© 2026 Edmond Yip’ and ‘Created with ChatGPT · Engineered with Codex’ on project surfaces and release materials. State the licence for each distributed component, preserve existing MIT grants and third-party notices, and follow the [release checklist](README.md#release-checklist).

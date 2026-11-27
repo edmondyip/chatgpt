@@ -10,6 +10,8 @@ SURV-005 integrates optional GA4 usage measurement. The shared footer reopens an
 
 Next commercial decision: whether to authorize the [proposed reviewer comparison](operations/research/SURV-002-releaseproof.md).
 
+**Ownership.** The [release checklist](README.md#release-checklist) covers copyright, licence boundaries and attribution. The Gumroad listing already names Edmond Yip. The owner can add the standard credit and replace the download with the private attribution update.
+
 The [public supporter listing](https://edmondyip.gumroad.com/l/chatgpt) is published and shows an enabled checkout link. The live site links directly to it. Actual receipts, fulfilment and payouts remain unverified. The supporter ZIP stays in the ignored local owner-delivery folder.
 
 ReleaseProof is a free static browser tool. Open `/releaseproof/` for a fictional report and measured sample cover. Use the gap filter to find the unsupported PASS, or expand the controls for other reports. All imported files stay in the tab. Community support is recorded separately from product sales; the existing financial figures still await reconciliation.

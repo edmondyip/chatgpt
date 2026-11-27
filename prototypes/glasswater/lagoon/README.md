@@ -30,4 +30,9 @@ Sweep a hand through a sunlit lagoon. Turn the light down and watch the floating
 
 Use a current browser with WebGL 2 and working GPU acceleration for interactive use. Render speed depends on viewport, device, browser and scene settings. Height fields represent one surface elevation per point. Refraction, seabed lighting and collisions are approximations. The orbit stays above the water and within the study’s camera limits. The page exposes one scene per document. For multiple scenes, use separate iframes. Hardware ray tracing, WebGPU and volumetric fluid dynamics are outside this release.
 
-ChatGPT developed the experimental studies. Codex prepared the release, integration and verification. MIT applies to this standalone Glasswater project. See [LICENSE](LICENSE).
+## Ownership and licensing
+
+© 2026 Edmond Yip<br>
+Created with ChatGPT · Engineered with Codex
+
+Glasswater is available under the [MIT License](LICENSE). Include the licence text when redistributing the standalone HTML or source.

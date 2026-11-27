@@ -17,6 +17,7 @@ export interface Experience {
   route: `/${string}/`;
   preview: { image: string; shareImage: string; alt: string; width: number; height: number };
   sourceUrl: string;
+  license: { label: string; url?: string };
   skills: readonly (keyof typeof cinematicSkills)[];
   accent?: string;
   browserRequirements: string;
@@ -31,6 +32,7 @@ export const experiences = {
     preview: { image: "/glasswater/preview.webp", shareImage: "/glasswater/share.png",
       alt: "Floating spheres on a lagoon lit by the setting sun.", width: 1200, height: 630 },
     sourceUrl: "https://github.com/edmondyip/glasswater",
+    license: { label: "Glasswater standalone project · MIT License", url: "https://github.com/edmondyip/glasswater/blob/main/LICENSE" },
     skills: ["interactive-ocean", "underwater-caustics", "refracted-shadows",
       "underwater-lighting", "floating-object-physics", "procedural-day-night"],
     accent: "#e6d9b8",

@@ -1,3 +1,6 @@
+/*! © 2026 Edmond Yip
+Created with ChatGPT · Engineered with Codex
+ * MIT-licensed. See LICENSE in the repository root. */
 // Optics controls and their runtime bounds.
 const opticsDefaults = {
   wind: 1,

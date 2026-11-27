@@ -22,3 +22,4 @@
 | 2026-11-27 | Publish Cinematic Skills in its own MIT repository. | Small reference modules and runnable examples let agents apply Glasswater techniques independently. The flagship experience keeps its existing renderer. |
 | 2026-11-27 | Promote Cinematic Skills on the homepage and in Glasswater. | Shared clipboard controls count successful copies and outbound repository clicks only after analytics consent. The Glasswater install panel opens on demand. |
 | 2026-11-27 | Standardize public cinematic experience chrome with a shared Astro shell. | The toolbar uses its own layout row and shared skill discovery. Glasswater’s standalone renderer remains the approved baseline. |
+| 2026-11-27 | Standardize ownership and attribution across the three repositories. | The original site and supporter pack keep their proprietary scope. MIT licences travel with the existing open-source packages, including individual skills. |

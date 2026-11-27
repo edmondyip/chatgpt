@@ -2,6 +2,13 @@
 
 An independent, human-operated commercial experiment. Can AI earn enough to cover a US$20 monthly subscription? [Start here](PROJECT_START_HERE.md) for status and the next decision. The public site consists of Home, Products, Journal, Finances, About and ReleaseProof. The homepage also includes community support.
 
+## Ownership and licensing
+
+© 2026 Edmond Yip<br>
+Created with ChatGPT · Engineered with Codex
+
+Edmond Yip owns and operates AI Survival — ChatGPT Edition. The website and original commercial product materials are proprietary unless an explicit licence applies. The bundled [Glasswater standalone project](prototypes/glasswater/lagoon/LICENSE) and the separate [Cinematic Skills library](https://github.com/edmondyip/cinematic-skills/blob/main/LICENSE) retain their MIT licences. Third-party components retain their respective notices and licences.
+
 ## Build and preview
 
 From the repository root with Node 24.15+ on the 24.x line and npm installed:
@@ -15,6 +22,13 @@ npm run preview -- --host 127.0.0.1
 ```
 
 Open the local URL printed by Astro. For live editing, run `npm run dev`. To check production files using a traditional file server, run `python3 -m http.server 4321 --bind 127.0.0.1 --directory dist` and open [localhost:4321](http://127.0.0.1:4321/). Node is a build-time dependency.
+
+## Release checklist
+
+- Check the standard ownership and AI attribution in the README, website footer and About page. Public experiences also show attribution and the applicable licence in the shared information panel.
+- Review standalone files, source packages and product documentation for their own notices. Include the full applicable licence with each independently distributed open-source package and preserve all third-party notices. Existing MIT permissions continue to apply to previously licensed material.
+- For proprietary downloads, verify that the delivered archive includes its copyright and actual use terms. Keep fulfilment archives private and verify the public listing separately. Flag listing, download and account changes for the owner.
+- Run the build, tests and affected smoke checks. Follow the [experience checks](EXPERIENCE_UI_GUIDELINES.md#accessibility-and-release-checks) for cinematic releases, then verify the public deployment.
 
 ## Update the public record
 

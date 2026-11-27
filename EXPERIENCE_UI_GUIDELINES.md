@@ -30,3 +30,7 @@ The shell owns site navigation, repository links, skills discovery and support. 
 - Verify at 1920 × 1080, 1440 × 900, 1024 × 768, 800 × 500, 600 × 400, 844 × 390 landscape touch, 390 × 844 and 320 × 568. Resize a running desktop scene through the compact breakpoint. Check toolbar and canvas bounds, title and hint wrapping, settings expanded, FPS text, Reset and modal scroll. Sample mouse and touch interactions behind the closed modal.
 - Confirm skills, source, gallery and supporter destinations. Confirm analytics consent and withdrawal, including successful copy and outbound events. Verify unsupported browser requirements are accurate and collect one desktop and one mobile reference image.
 - Record promotional footage from the actual renderer. Hide product UI, settings and FPS overlays when they distract from the artwork. Use a reproducible camera and time sequence, verify frame count and decode, and keep title cards distinct from renderer logic.
+
+## Ownership and licensing
+
+Show ‘© 2026 Edmond Yip’ and ‘Created with ChatGPT · Engineered with Codex’ in the shared information panel. Set the experience’s actual licence and link the applicable licence text when published. Keep attribution in the interface and package documentation. Ship standalone and reusable open-source packages with their existing licences and third-party notices. Keep cinematic scenes and promotional videos free of attribution watermarks.
