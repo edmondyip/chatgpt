@@ -9,7 +9,7 @@ const { title, description } = glasswater;
 <html lang="en"><head>
 <PageHead title={title} description={description} shareCard={{ image: "/glasswater/share.png", alt: "Floating spheres on a lagoon lit by the setting sun." }}/>
 </head><body>
-<nav aria-label="Experience links"><a href="/">← Home</a>{support.availability === "available" && <a href={support.checkoutUrl}>Support</a>}</nav>
+<nav aria-label="Experience links"><a href="/">← Home</a><a href={glasswater.skillsUrl} aria-label="Skills behind Glasswater">Skills</a>{support.availability === "available" && <a href={support.checkoutUrl}>Support</a>}</nav>
 <iframe title={title} srcdoc={scene}></iframe>
 </body></html>
 <style>
@@ -17,5 +17,8 @@ const { title, description } = glasswater;
   iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
   nav { position: fixed; z-index: 1; right: max(14px, env(safe-area-inset-right)); bottom: 47px; display: flex; background: #152b37bf; border-radius: 8px; }
   @media (max-width: 600px) { nav { top: 8px; bottom: auto; } }
+  @media (max-width: 420px) {
+    iframe { inset: 44px 0 0; height: calc(100% - 44px); }
+  }
   a { padding: 9px; color: #fff8e5; font: 13px system-ui; text-underline-offset: 3px; }
 </style>

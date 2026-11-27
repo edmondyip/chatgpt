@@ -14,3 +14,5 @@
 The [standalone Glasswater package](prototypes/glasswater/lagoon/README.md) is MIT-licensed and includes the V15 HTML with the horizon correction, an annotated editable version, API documentation and an embed example. Use V15 to check visual and interaction parity. Keep the website and future commercial Art Kit components outside its licence scope.
 
 For the next scene, start with the closest existing renderer. Extract a simulation or asset factory when a second scene needs it. Both prototypes require WebGL 2. Browser, hardware and scene settings affect performance. GPU scene time may be unavailable through the browser’s timer-query extension.
+
+[Cinematic Skills](https://github.com/edmondyip/cinematic-skills) publishes six independent MIT-licensed skills based on the corrected Glasswater source. The library includes CPU reference modules, WebGL 2 integration guidance and a tide tank that combines the ocean, float physics and day/night modules. Three.js adapter guidance remains untested.

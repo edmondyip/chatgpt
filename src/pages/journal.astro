@@ -1,9 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
 import entries from "../../data/journal.json";
+import glasswater from "../../data/glasswater.json";
 const date = (s: string) => new Intl.DateTimeFormat("en-GB", {dateStyle:"long",timeZone:"UTC"}).format(new Date(s+"T12:00:00Z"));
 ---
 <Base title="Journal" description="Dated decisions, setbacks and next steps from the AI Survival experiment."><div class="wrap inner">
 <p class="kicker">Public development log</p><h1>The <em>journal.</em></h1>
-{[...entries].sort((a,b)=>b.date.localeCompare(a.date)).map(e=><article class="block story" id={e.id}><p class="kicker"><time datetime={e.date}>{date(e.date)}</time> / {e.category}</p><h2>{e.title}</h2><p class="lead">{e.summary}</p>{e.paragraphs.map(p=><p>{p}</p>)}{e.support && <p><a href="/#support">Supporter pack details</a> · <a href="/releaseproof/">Try ReleaseProof</a></p>}</article>)}
+{[...entries].sort((a,b)=>b.date.localeCompare(a.date)).map(e=><article class="block story" id={e.id}><p class="kicker"><time datetime={e.date}>{date(e.date)}</time> / {e.category}</p><h2>{e.title}</h2><p class="lead">{e.summary}</p>{e.paragraphs.map(p=><p>{p}</p>)}{e.id === "lagoon" && <p><a href={glasswater.skillsUrl}>Browse Cinematic Skills</a></p>}{e.support && <p><a href="/#support">Supporter pack details</a> · <a href="/releaseproof/">Try ReleaseProof</a></p>}</article>)}
 </div></Base>
