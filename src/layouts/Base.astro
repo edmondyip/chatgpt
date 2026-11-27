@@ -1,5 +1,6 @@
 ---
 import "../styles/site.css";
+import AnalyticsConsent from "../components/AnalyticsConsent.astro";
 import PageHead from "../components/PageHead.astro";
 interface Props {
   title: string;
@@ -15,11 +16,5 @@ const links = [["/products/", "Products"], ["/journal/", "Journal"], ["/finances
 <header><div class="wrap mast"><a class="brand" href="/" aria-label="AI Survival home"><img src="/favicon.svg" width="36" height="36" alt=""/>AI Survival</a><span class="edition">ChatGPT Edition</span>
 <nav aria-label="Main navigation">{links.map(([href,name])=><a href={href} aria-current={Astro.url.pathname === href ? "page" : undefined}>{name}</a>)}</nav></div></header>
 <main id="main" tabindex="-1"><slot/></main><footer><div class="wrap foot"><a href="/" class="footer-brand">AI Survival</a><span>Independent, human-operated experiment.</span><a href="https://gemini.256pages.com/">Also in this experiment: Gemini Survival Lab</a><a href="/about/">Ownership &amp; rules</a><button id="analytics-settings" type="button" aria-controls="analytics-consent" aria-expanded="false">Analytics preferences</button></div></footer>
-<section hidden id="analytics-consent" aria-labelledby="analytics-heading">
-  <strong id="analytics-heading">Allow optional analytics?</strong>
-  <p>Google Analytics helps us count visits, demo use and referral clicks. Imported files stay in your tab. <a href="/about/#privacy">Privacy notice</a></p>
-  <div><button type="button" data-consent="accepted">Accept</button>
-  <button type="button" data-consent="rejected">Reject</button></div>
-</section>
-<script>import "../lib/analytics";</script>
+<AnalyticsConsent/>
 </body></html>

@@ -1,0 +1,13 @@
+---
+interface Props {
+  onRequest?: boolean;
+}
+const { onRequest = false } = Astro.props;
+---
+<section hidden id="analytics-consent" data-on-request={onRequest ? "" : undefined} aria-labelledby="analytics-heading">
+  <strong id="analytics-heading">Allow optional analytics?</strong>
+  <p>Google Analytics helps us count visits, demo use, command copies and referral clicks. Imported files stay in your tab. <a href="/about/#privacy">Privacy notice</a></p>
+  <div><button type="button" data-consent="accepted">Accept</button>
+  <button type="button" data-consent="rejected">Reject</button></div>
+</section>
+<script>import "../lib/analytics";</script>

@@ -1,5 +1,7 @@
 ---
 import GlasswaterFeature from "../components/GlasswaterFeature.astro";
+import SkillsInstallCommand from "../components/SkillsInstallCommand.astro";
+import glasswater from "../../data/glasswater.json";
 import Base from "../layouts/Base.astro";
 import journal from "../../data/journal.json";
 import { current, target, coverage, percent } from "../lib/ledger";
@@ -11,6 +13,12 @@ const progress = percent(coverage(current));
 <Base title="Can AI earn enough to pay for itself?" description="Follow a human-owned experiment to earn US$20 a month with AI. Read the field notes, product experiments and public financial ledger.">
 <div class="wrap">
 <GlasswaterFeature/>
+<section class="skills-feature" aria-labelledby="cinematic-skills-heading">
+  <h2 id="cinematic-skills-heading">Cinematic Skills</h2>
+  <p>Six free, open-source skills for AI coding agents, drawn from Glasswater.</p>
+  <SkillsInstallCommand/>
+  <a href={glasswater.skillsUrl} target="_blank" rel="noopener">Browse the six skills on GitHub</a>
+</section>
 <nav class="discovery" aria-label="Browse the workbench">
   <a href="/products/#experiences">Experiences</a>
   <a href="/products/#open-source">Open Source</a>
@@ -31,6 +39,8 @@ const progress = percent(coverage(current));
 </div></Base>
 
 <style>
+.skills-feature { border-block: 1px solid var(--line); padding-block: 1.25rem; margin-bottom: .75rem; }
+.skills-feature p { margin: .5rem 0 .75rem; }
 .discovery { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
 .discovery a { padding-block: .5rem; }
 </style>

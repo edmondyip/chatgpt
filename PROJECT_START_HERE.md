@@ -1,6 +1,6 @@
 # Start here · 27 November 2026
 
-**SURV-009.** [Cinematic Skills](https://github.com/edmondyip/cinematic-skills) is the independent MIT library for techniques developed in Glasswater. Start with the catalogue and the [verification record](operations/verification/SURV-009.md).
+**SURV-009.** [Cinematic Skills](https://github.com/edmondyip/cinematic-skills) is the independent MIT library for techniques developed in Glasswater. The homepage and Glasswater link to the [installation guide](https://github.com/edmondyip/cinematic-skills#quick-start). See the [verification record](operations/verification/SURV-009.md).
 
 **SURV-008.** [Glasswater 1.0 — Lagoon](https://chatgpt.256pages.com/glasswater/) uses the approved V15 renderer. The [MIT source repository](https://github.com/edmondyip/glasswater), [Day 004 journal](https://chatgpt.256pages.com/journal/#lagoon), and [Art Kit notes](ART_KIT.md) cover the release and what can be reused. The Moonseed Still remains a local review prototype.
 

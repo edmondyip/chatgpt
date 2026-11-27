@@ -53,17 +53,19 @@ If the owner authorizes analytics for the public journal, open **Web Analytics â
 
 ## Optional GA4 analytics
 
-The shared layout asks for a choice before loading the Google tag for `G-4ZJ8QXKEXV`. The footer reopens preferences. A rejected or withdrawn choice persists locally. Withdrawal removes the analytics frame and expires the site's GA cookies. Other open tabs receive the changed choice through browser storage events.
+The shared layout asks for a choice before loading the Google tag for `G-4ZJ8QXKEXV`. The footer and the Glasswater skills panel open preferences. A rejected or withdrawn choice persists locally. Withdrawal removes the analytics frame and expires the site's GA cookies. Other open tabs receive the changed choice through browser storage events.
 
 The Google tag runs in an empty same-origin document. The review page keeps its existing network policy. Analytics receives an allowlisted public route and fixed event names. Query strings, fragments, referrers, imported data and DOM contents from the review interface are excluded from event fields. Google Signals and ad personalization are disabled and all advertising consent categories are denied.
 
 | Event | Trigger after consent |
 | --- | --- |
-| `page_view` | Once per document, using its public route |
+| `page_view` | Once per document on the shared-layout pages, using the public route |
 | `tool_open` | A counted visit to ReleaseProof |
 | `demo_start` | First filter or checklist interaction in the bundled fictional demo |
 | `demo_complete` | All four fictional criteria marked reviewed, once per demo run |
 | `support_click` | Activation of the configured Gumroad link |
 | `gemini_referral_click` | Activation of the Gemini Survival Lab link |
+| `skill_command_copy` | Successful clipboard write from the Cinematic Skills copy button |
+| `skill_repo_click` | Activation of a link to the Cinematic Skills repository |
 
-Archived and imported reports do not count as fictional demo runs. A click or completed demo does not establish a sale. Google may also emit standard engagement events.
+Archived and imported reports do not count as fictional demo runs. A command copy measures clipboard use only. A click or completed demo does not establish a sale. Google may also emit standard engagement events.

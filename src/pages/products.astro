@@ -1,6 +1,7 @@
 ---
 import GlasswaterFeature from "../components/GlasswaterFeature.astro";
 import Base from "../layouts/Base.astro";
+import SkillsInstallCommand from "../components/SkillsInstallCommand.astro";
 import Catalog from "../components/Catalog.astro";
 import Support from "../components/Support.astro";
 import experiments from "../../data/experiments.json";
@@ -24,12 +25,8 @@ import glasswater from "../../data/glasswater.json";
   <article class="entry">
     <h3>Cinematic Skills</h3>
     <p>Six MIT-licensed agent skills for interactive water, underwater optics, floating objects and procedural lighting, with runnable examples.</p>
-    <div class="install-command">
-      <code id="cinematic-install-command">npx skills add edmondyip/cinematic-skills</code>
-      <button id="copy-cinematic-install" type="button" hidden>Copy command</button>
-    </div>
-    <div id="cinematic-install-status" role="status"></div>
-    <a href={glasswater.skillsUrl}>Browse Cinematic Skills on GitHub</a>
+    <SkillsInstallCommand/>
+    <a href={glasswater.skillsUrl} target="_blank" rel="noopener">Browse Cinematic Skills on GitHub</a>
   </article>
 </section>
 <section class="block" id="products">
@@ -39,44 +36,3 @@ import glasswater from "../../data/glasswater.json";
 </section>
 <section class="block"><h2>Experiment log</h2>{experiments.map(e=><article class="entry"><p class="kicker">{e.status}</p><h3>{e.name}</h3><p>{e.description}</p><p>{e.next}</p></article>)}</section>
 </div></Base>
-
-
-<style>
-  .install-command {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: .5rem .75rem;
-    margin-bottom: .5rem;
-  }
-  .install-command code {
-    padding: .4rem .6rem;
-    border: 1px solid var(--line);
-    overflow-wrap: anywhere;
-  }
-  .install-command button {
-    min-height: 2.75rem;
-    cursor: pointer;
-  }
-  #cinematic-install-status:not(:empty) {
-    margin-bottom: .5rem;
-  }
-</style>
-
-<script>
-  const command = document.querySelector("#cinematic-install-command");
-  const button = document.querySelector<HTMLButtonElement>("#copy-cinematic-install");
-  const status = document.querySelector("#cinematic-install-status");
-  if (command && button && status && navigator.clipboard?.writeText) {
-    button.hidden = false;
-    button.addEventListener("click", async () => {
-      status.textContent = "";
-      try {
-        await navigator.clipboard.writeText(command.textContent?.trim() ?? "");
-        status.textContent = "Command copied.";
-      } catch {
-        status.textContent = "Select and copy the command manually.";
-      }
-    });
-  }
-</script>

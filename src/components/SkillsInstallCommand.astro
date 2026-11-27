@@ -1,0 +1,50 @@
+<div class="install-command">
+  <code id="cinematic-install-command">npx skills add edmondyip/cinematic-skills</code>
+  <button id="copy-cinematic-install" type="button" hidden>Copy command</button>
+</div>
+<div id="cinematic-install-status" role="status"></div>
+
+<style>
+  .install-command {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem .75rem;
+    margin-bottom: .5rem;
+  }
+  .install-command code {
+    padding: .4rem .6rem;
+    border: 1px solid var(--line, #637b83);
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+  .install-command button {
+    min-height: 2.75rem;
+    cursor: pointer;
+  }
+  #cinematic-install-status:not(:empty) {
+    margin-bottom: .5rem;
+  }
+</style>
+
+<script>
+  import { trackSkillCopy } from "../lib/analytics";
+
+  const command = document.querySelector("#cinematic-install-command");
+  const button = document.querySelector<HTMLButtonElement>("#copy-cinematic-install");
+  const status = document.querySelector("#cinematic-install-status");
+  if (command && button && status && navigator.clipboard?.writeText) {
+    button.hidden = false;
+    button.addEventListener("click", async () => {
+      status.textContent = "";
+      try {
+        await navigator.clipboard.writeText(command.textContent?.trim() ?? "");
+      } catch {
+        status.textContent = "Select and copy the command manually.";
+        return;
+      }
+      status.textContent = "Command copied.";
+      trackSkillCopy();
+    });
+  }
+</script>

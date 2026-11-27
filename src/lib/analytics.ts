@@ -1,5 +1,8 @@
 import support from "../../data/support.json";
 
+import glasswater from "../../data/glasswater.json";
+
+const skillsRepository = glasswater.skillsUrl.split("#")[0];
 const id = "G-4ZJ8QXKEXV";
 const preferenceKey = "survival.analytics.v1";
 const routes = [
@@ -9,6 +12,7 @@ const routes = [
   "/finances/",
   "/about/",
   "/releaseproof/",
+  "/glasswater/",
 ];
 type Choice = "accepted" | "rejected";
 type EventName =
@@ -17,7 +21,9 @@ type EventName =
   | "demo_start"
   | "demo_complete"
   | "support_click"
-  | "gemini_referral_click";
+  | "gemini_referral_click"
+  | "skill_command_copy"
+  | "skill_repo_click";
 type Tag = (...args: unknown[]) => void;
 type TagWindow = Window & { startAnalytics: (route: string) => void; gtag: Tag } & Record<
     `ga-disable-${string}`,
@@ -55,6 +61,10 @@ export function trackDemo(name: "demo_start" | "demo_complete") {
   return send(name);
 }
 
+export function trackSkillCopy() {
+  return send("skill_command_copy");
+}
+
 function start() {
   if (frame || !route || !routes.includes(route)) return;
   const host = document.createElement("iframe");
@@ -63,7 +73,7 @@ function start() {
   host.referrerPolicy = "no-referrer";
   frame = host;
   if (!countedPage) {
-    send("page_view");
+    if (route !== "/glasswater/") send("page_view");
     if (route === "/releaseproof/") send("tool_open");
     countedPage = true;
   }
@@ -95,7 +105,7 @@ function stop() {
 function apply(next: Choice | null) {
   const previous = choice;
   choice = next;
-  panel.hidden = choice !== null;
+  panel.hidden = choice !== null || panel.hasAttribute("data-on-request");
   settings.setAttribute("aria-expanded", String(!panel.hidden));
   if (choice === "accepted") start();
   else if (previous === "accepted" || choice === "rejected") stop();
@@ -126,9 +136,10 @@ document.addEventListener(
   (event) => {
     const link =
       event.target instanceof Element ? event.target.closest("a") : null;
-    if (link?.href === support.checkoutUrl) send("support_click");
+    if (route !== "/glasswater/" && link?.href === support.checkoutUrl) send("support_click");
     if (link?.href === "https://gemini.256pages.com/")
       send("gemini_referral_click");
+    if (link?.href.split("#")[0] === skillsRepository) send("skill_repo_click");
   },
   { capture: true },
 );
