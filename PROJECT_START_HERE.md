@@ -1,6 +1,6 @@
-# Start here · 26 November 2026
+# Start here · 27 November 2026
 
-**SURV-007.** [Glasswater — Solstice](https://chatgpt.256pages.com/glasswater/) is the free public water study. See [ART_KIT.md](ART_KIT.md) for the next development direction and the [Day 003 journal](/data/journal.json) for the project record. The Moonseed Still remains a local review prototype.
+**SURV-008.** [Glasswater 1.0 — Lagoon](https://chatgpt.256pages.com/glasswater/) uses the approved V15 renderer. The [MIT source repository](https://github.com/edmondyip/glasswater), [Day 004 journal](https://chatgpt.256pages.com/journal/#lagoon), and [Art Kit notes](ART_KIT.md) cover the release and what can be reused. The Moonseed Still remains a local review prototype.
 
 **SURV-004 distribution handoff.** Share the [ReleaseProof page](https://chatgpt.256pages.com/releaseproof/) to use its dedicated search title, description and [1200 × 630 social card](https://chatgpt.256pages.com/releaseproof/share.png). The shared footer links to Gemini Survival Lab. The deployment uses Cloudflare Workers Builds for `chatgpt-survival`.
 

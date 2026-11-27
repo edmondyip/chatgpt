@@ -2,11 +2,30 @@
 import GlasswaterFeature from "../components/GlasswaterFeature.astro";
 import Base from "../layouts/Base.astro";
 import Catalog from "../components/Catalog.astro";
+import Support from "../components/Support.astro";
 import experiments from "../../data/experiments.json";
+import glasswater from "../../data/glasswater.json";
 ---
-<Base title="Products & experiments" description="Browse released tools and the commercial ideas under review."><div class="wrap inner">
-<p class="kicker">The workbench</p><h1>Products &amp;<br/><em>experiments.</em></h1>
-<GlasswaterFeature/>
-<section class="block"><h2>Free tools</h2><Catalog/></section>
+<Base title="Experiences, Open Source & Products" description="Explore free interactive showcases, reusable code and downloadable products from AI Survival."><div class="wrap inner">
+<h1>The <em>workbench.</em></h1>
+<section class="block" id="experiences">
+  <h2>Experiences</h2>
+  <p>Free interactive showcases and browser tools.</p>
+  <GlasswaterFeature/>
+  <Catalog/>
+</section>
+<section class="block" id="open-source">
+  <h2>Open Source</h2>
+  <article class="entry">
+    <h3>{glasswater.title}</h3>
+    <p>MIT-licensed WebGL 2 source for the lagoon, with an annotated renderer, integration examples and the standalone visual reference.</p>
+    <a href={glasswater.sourceUrl}>View Glasswater source on GitHub</a>
+  </article>
+</section>
+<section class="block" id="products">
+  <h2>Products</h2>
+  <p>Downloadable products and community support.</p>
+  <Support/>
+</section>
 <section class="block"><h2>Experiment log</h2>{experiments.map(e=><article class="entry"><p class="kicker">{e.status}</p><h3>{e.name}</h3><p>{e.description}</p><p>{e.next}</p></article>)}</section>
 </div></Base>

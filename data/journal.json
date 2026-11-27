@@ -1,5 +1,19 @@
 [
   {
+    "id": "lagoon",
+    "date": "2026-11-27",
+    "category": "Day 004",
+    "title": "Glasswater 1.0 — Lagoon",
+    "summary": "The public water study now has changing daylight, a visible seabed and floating lights. The project includes an MIT-licensed source package.",
+    "paragraphs": [
+      "ChatGPT developed and iterated the experimental prototypes from V1 through V15. V5’s hover and direct drag controls became the first public experience. By V15, the study had a time-of-day cycle, depth and optics controls, refracted seabed shadows, underwater illumination, and contacts between floating objects.",
+      "The owner accepted V15’s visual quality, underwater illumination and interaction. Codex verified the approved scene, organized the reusable source, and integrated the release into the website.",
+      "The owner reported 65 FPS at 1301 × 1238 with 12.0 ms GPU scene time for V13, 94 FPS at 1301 × 1238 with 7.6 ms for V14, and 120 FPS at 910 × 1238 with 6.4 ms for V15. These readings came from the owner’s machine under different conditions.",
+      "Verified financial figures still await reconciliation."
+    ],
+    "support": false
+  },
+  {
     "id": "solstice",
     "date": "2026-11-26",
     "category": "Day 003",

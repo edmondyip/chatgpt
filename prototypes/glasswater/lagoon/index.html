@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>Glasswater 1.0 — Lagoon</title>
+    <link rel="stylesheet" href="./src/lagoon.css" />
+  </head>
+  <body>
+    <canvas
+      id="c"
+      aria-label="Open sea with floating objects. Hover or tap water to disturb it. Drag to orbit."
+    ></canvas>
+    <header>
+      <small>INTERACTIVE WATER STUDY</small>
+      <h1>Lagoon · Below the Surface</h1>
+      <p id="hint">Sweep water · Tap to disturb · Drag to orbit</p>
+    </header>
+    <footer>
+      <span id="fps">Starting…</span><button id="reset">Reset view</button>
+    </footer>
+    <aside id="controls">
+      <details open>
+        <summary>LIGHT / ENVIRONMENT</summary>
+        <div class="sliders">
+          <label for="hour">Time of day <output id="clock">12:00</output></label
+          ><input
+            id="hour"
+            type="range"
+            min="0"
+            max="24"
+            step="0.05"
+            value="12"
+          />
+          <div class="presets">
+            <button data-hour="6.3">Dawn</button
+            ><button data-hour="12">Day</button
+            ><button data-hour="17.4">Dusk</button
+            ><button data-hour="22">Night</button>
+          </div>
+          <label for="exposure">Exposure <output id="ev">0.0 EV</output></label
+          ><input
+            id="exposure"
+            type="range"
+            min="-1.5"
+            max="1.5"
+            step="0.1"
+            value="0"
+          /><label class="toggle"
+            ><input id="lamps" type="checkbox" checked /> Floating lights after
+            dark</label
+          ><label class="toggle"
+            ><input id="underwaterLights" type="checkbox" checked /> Underwater
+            illumination</label
+          >
+        </div>
+      </details>
+      <details>
+        <summary>WATER / OPTICS</summary>
+        <div class="sliders">
+          <label for="wind">Wind speed <output id="windVal">1×</output></label
+          ><input
+            id="wind"
+            type="range"
+            min="0"
+            max="2"
+            step="0.05"
+            value="1"
+          /><label for="direction"
+            >Wind direction <output id="directionVal">0°</output></label
+          ><input
+            id="direction"
+            type="range"
+            min="-180"
+            max="180"
+            step="5"
+            value="0"
+          /><label for="wave"
+            >Wave height <output id="waveVal">1×</output></label
+          ><input
+            id="wave"
+            type="range"
+            min="0"
+            max="2"
+            step="0.05"
+            value="1"
+          /><label for="rough"
+            >Surface roughness <output id="roughVal">0.065</output></label
+          ><input
+            id="rough"
+            type="range"
+            min="0.02"
+            max="0.22"
+            step="0.005"
+            value="0.065"
+          /><label for="depth"
+            >Water depth <output id="depthVal">1.60 m</output></label
+          ><input
+            id="depth"
+            type="range"
+            min="0.76"
+            max="4"
+            step="0.04"
+            value="1.6"
+          /><label for="clarity"
+            >Water clarity <output id="clarityVal">0.65</output></label
+          ><input
+            id="clarity"
+            type="range"
+            min="0"
+            max="1"
+            step="0.05"
+            value="0.65"
+          /><label for="light"
+            >Light intensity <output id="lightVal">1×</output></label
+          ><input
+            id="light"
+            type="range"
+            min="0"
+            max="2"
+            step="0.05"
+            value="1"
+          /><label for="force"
+            >Interaction strength <output id="forceVal">1×</output></label
+          ><input
+            id="force"
+            type="range"
+            min="0.2"
+            max="2.5"
+            step="0.1"
+            value="1"
+          /><label class="toggle"
+            ><input id="caustics" type="checkbox" checked /> Seabed
+            caustics</label
+          ><label class="toggle"
+            ><input id="bedShadows" type="checkbox" checked /> Refracted seabed
+            shadows</label
+          ><button id="resetOptics">Reset water settings</button>
+        </div>
+      </details>
+    </aside>
+    <div id="err"></div>
+    <script type="module" src="./src/lagoon.js"></script>
+  </body>
+</html>

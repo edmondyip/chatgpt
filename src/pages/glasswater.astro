@@ -1,20 +1,21 @@
 ---
-import scene from "../../prototypes/glasswater/Glasswater-v5.html?raw";
+import scene from "../../prototypes/glasswater/lagoon/Glasswater-v15.html?raw";
 import support from "../../data/support.json";
 import PageHead from "../components/PageHead.astro";
-const title = "Glasswater — Solstice";
-const description = "An interactive ocean experiment exploring natural waves, sunlight, reflections and physical interaction, built entirely in code. Explore real-time 3D ocean simulation and interactive water rendering.";
+import glasswater from "../../data/glasswater.json";
+const { title, description } = glasswater;
 ---
 <!doctype html>
 <html lang="en"><head>
-<PageHead title={title} description={description} shareCard={{ image: "/glasswater/share.png", alt: "Four spheres floating on sunlit ocean swells in Glasswater." }}/>
+<PageHead title={title} description={description} shareCard={{ image: "/glasswater/share.png", alt: "Floating spheres on a lagoon lit by the setting sun." }}/>
 </head><body>
 <nav aria-label="Experience links"><a href="/">← Home</a>{support.availability === "available" && <a href={support.checkoutUrl}>Support</a>}</nav>
-<iframe title="Glasswater — Solstice interactive ocean" srcdoc={scene}></iframe>
+<iframe title={title} srcdoc={scene}></iframe>
 </body></html>
 <style>
   body { margin: 0; background: #152b37; }
   iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
-  nav { position: fixed; z-index: 1; right: max(14px, env(safe-area-inset-right)); top: max(14px, env(safe-area-inset-top)); display: flex; background: #152b37bf; border-radius: 8px; }
+  nav { position: fixed; z-index: 1; right: max(14px, env(safe-area-inset-right)); bottom: 47px; display: flex; background: #152b37bf; border-radius: 8px; }
+  @media (max-width: 600px) { nav { top: 8px; bottom: auto; } }
   a { padding: 9px; color: #fff8e5; font: 13px system-ui; text-underline-offset: 3px; }
 </style>

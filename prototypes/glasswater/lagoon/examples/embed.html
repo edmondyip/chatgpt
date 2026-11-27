@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Glasswater embed example</title>
+    <style>
+      body { max-width: 80rem; margin: 1rem auto; padding: 0 1rem; font: 1rem system-ui; }
+      iframe { width: 100%; height: min(72vh, 650px); border: 0; }
+      button { margin-bottom: .75rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Glasswater embed example</h1>
+    <button id="depth" type="button" disabled>Set water depth to 2.4 m</button>
+    <iframe title="Glasswater lagoon"></iframe>
+    <script>
+      const frame = document.querySelector("iframe");
+      const depth = document.querySelector("#depth");
+      frame.addEventListener("load", () => {
+        depth.disabled = typeof frame.contentWindow.artKitOptics !== "function";
+        frame.contentWindow.artKitLight?.(17.4, 0.2);
+      });
+      depth.addEventListener("click", () => frame.contentWindow.artKitOptics({ depth: 2.4 }));
+      frame.src = "../index.html";
+    </script>
+  </body>
+</html>
