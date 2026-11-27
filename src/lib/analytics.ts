@@ -1,8 +1,7 @@
 import support from "../../data/support.json";
 
-import glasswater from "../../data/glasswater.json";
+import { cinematicSkillsRepository, experiences } from "./experiences";
 
-const skillsRepository = glasswater.skillsUrl.split("#")[0];
 const id = "G-4ZJ8QXKEXV";
 const preferenceKey = "survival.analytics.v1";
 const routes = [
@@ -12,7 +11,6 @@ const routes = [
   "/finances/",
   "/about/",
   "/releaseproof/",
-  "/glasswater/",
 ];
 type Choice = "accepted" | "rejected";
 type EventName =
@@ -45,6 +43,7 @@ let tag: Tag | undefined;
 let pending: EventName[] = [];
 let countedPage = false;
 const route = location.pathname;
+const isExperience = Object.values(experiences).some(experience => experience.route === route);
 const panel = document.querySelector<HTMLElement>("#analytics-consent")!;
 const settings = document.querySelector<HTMLButtonElement>(
   "#analytics-settings",
@@ -66,14 +65,14 @@ export function trackSkillCopy() {
 }
 
 function start() {
-  if (frame || !route || !routes.includes(route)) return;
+  if (frame || (!isExperience && !routes.includes(route))) return;
   const host = document.createElement("iframe");
   host.hidden = true;
   host.title = "Site analytics";
   host.referrerPolicy = "no-referrer";
   frame = host;
   if (!countedPage) {
-    if (route !== "/glasswater/") send("page_view");
+    if (!isExperience) send("page_view");
     if (route === "/releaseproof/") send("tool_open");
     countedPage = true;
   }
@@ -136,10 +135,13 @@ document.addEventListener(
   (event) => {
     const link =
       event.target instanceof Element ? event.target.closest("a") : null;
-    if (route !== "/glasswater/" && link?.href === support.checkoutUrl) send("support_click");
+    if (!isExperience && link?.href === support.checkoutUrl) send("support_click");
     if (link?.href === "https://gemini.256pages.com/")
       send("gemini_referral_click");
-    if (link?.href.split("#")[0] === skillsRepository) send("skill_repo_click");
+    const href = link?.href.split("#")[0];
+    if (href === cinematicSkillsRepository || href?.startsWith(`${cinematicSkillsRepository}/`)) {
+      send("skill_repo_click");
+    }
   },
   { capture: true },
 );

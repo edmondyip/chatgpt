@@ -1,7 +1,7 @@
 ---
 import GlasswaterFeature from "../components/GlasswaterFeature.astro";
 import SkillsInstallCommand from "../components/SkillsInstallCommand.astro";
-import glasswater from "../../data/glasswater.json";
+import { cinematicSkillsCatalogue } from "../lib/experiences";
 import Base from "../layouts/Base.astro";
 import journal from "../../data/journal.json";
 import { current, target, coverage, percent } from "../lib/ledger";
@@ -17,7 +17,7 @@ const progress = percent(coverage(current));
   <h2 id="cinematic-skills-heading">Cinematic Skills</h2>
   <p>Six free, open-source skills for AI coding agents, drawn from Glasswater.</p>
   <SkillsInstallCommand/>
-  <a href={glasswater.skillsUrl} target="_blank" rel="noopener">Browse the six skills on GitHub</a>
+  <a href={cinematicSkillsCatalogue} target="_blank" rel="noopener">Browse the six skills on GitHub</a>
 </section>
 <nav class="discovery" aria-label="Browse the workbench">
   <a href="/products/#experiences">Experiences</a>

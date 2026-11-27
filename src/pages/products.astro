@@ -5,7 +5,8 @@ import SkillsInstallCommand from "../components/SkillsInstallCommand.astro";
 import Catalog from "../components/Catalog.astro";
 import Support from "../components/Support.astro";
 import experiments from "../../data/experiments.json";
-import glasswater from "../../data/glasswater.json";
+import { cinematicSkillsCatalogue, experiences } from "../lib/experiences";
+const { glasswater } = experiences;
 ---
 <Base title="Experiences, Open Source & Products" description="Explore free interactive showcases, reusable code and downloadable products from AI Survival."><div class="wrap inner">
 <h1>The <em>workbench.</em></h1>
@@ -26,7 +27,7 @@ import glasswater from "../../data/glasswater.json";
     <h3>Cinematic Skills</h3>
     <p>Six MIT-licensed agent skills for interactive water, underwater optics, floating objects and procedural lighting, with runnable examples.</p>
     <SkillsInstallCommand/>
-    <a href={glasswater.skillsUrl} target="_blank" rel="noopener">Browse Cinematic Skills on GitHub</a>
+    <a href={cinematicSkillsCatalogue} target="_blank" rel="noopener">Browse Cinematic Skills on GitHub</a>
   </article>
 </section>
 <section class="block" id="products">

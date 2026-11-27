@@ -1,76 +1,27 @@
 ---
 import scene from "../../prototypes/glasswater/lagoon/Glasswater-v15.html?raw";
-import support from "../../data/support.json";
-import AnalyticsConsent from "../components/AnalyticsConsent.astro";
-import SkillsInstallCommand from "../components/SkillsInstallCommand.astro";
-import PageHead from "../components/PageHead.astro";
-import glasswater from "../../data/glasswater.json";
-const { title, description } = glasswater;
+import ExperienceShell from "../layouts/ExperienceShell.astro";
+import { experiences } from "../lib/experiences";
+const { glasswater } = experiences;
 ---
-<!doctype html>
-<html lang="en"><head>
-<PageHead title={title} description={description} shareCard={{ image: "/glasswater/share.png", alt: "Floating spheres on a lagoon lit by the setting sun." }}/>
-</head><body>
-<nav aria-label="Experience links">
-  <a href="/">← Home</a>
-  <button type="button" popovertarget="glasswater-skills">Get the 6 free skills</button>
-  {support.availability === "available" && <a href={support.checkoutUrl}>Support</a>}
-</nav>
-<iframe title={title} srcdoc={scene}></iframe>
-<section id="glasswater-skills" popover aria-labelledby="glasswater-skills-heading">
-  <div class="panel-heading">
-    <h2 id="glasswater-skills-heading">Cinematic Skills</h2>
-    <button type="button" popovertarget="glasswater-skills" popovertargetaction="hide">Close</button>
-  </div>
-  <SkillsInstallCommand/>
-  <a href={glasswater.skillsUrl.replace("#skill-catalogue", "#quick-start")} target="_blank" rel="noopener">Read the installation guide ↗</a>
-  <button id="analytics-settings" type="button" aria-controls="analytics-consent" aria-expanded="false">Analytics preferences</button>
-  <AnalyticsConsent onRequest/>
-</section>
-</body></html>
-<style>
-  body { margin: 0; background: #152b37; }
-  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
-  nav { position: fixed; z-index: 1; right: max(14px, env(safe-area-inset-right)); bottom: 47px; display: flex; background: #152b37bf; border-radius: 8px; }
-  @media (max-width: 600px) { nav { top: 8px; bottom: auto; } }
-  @media (max-width: 480px) {
-    iframe { inset: 44px 0 0; height: calc(100% - 44px); }
-  }
-  nav :is(a, button) {
-    padding: 9px;
-    color: #fff8e5;
-    font: 13px system-ui;
-    background: none;
-    border: 0;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    cursor: pointer;
-  }
-  #glasswater-skills {
-    inset: auto auto 62px max(14px, env(safe-area-inset-left));
-    box-sizing: border-box;
-    margin: 0;
-    width: min(26rem, calc(100% - 28px));
-    max-height: calc(100dvh - 80px);
-    overflow: auto;
-    padding: 12px;
-    background: #f6f5ed;
-    color: #172b32;
-    border: 1px solid #637b83;
-    border-radius: 8px;
-    font: 14px/1.4 system-ui;
-  }
-  @media (min-width: 601px) {
-    #glasswater-skills { width: min(26rem, calc(100% - 295px)); }
-  }
-  @media (max-width: 600px) {
-    #glasswater-skills { inset-block: 50px auto; }
-  }
-  .panel-heading { display: flex; justify-content: space-between; align-items: center; gap: .5rem; margin-bottom: .5rem; }
-  h2 { margin: 0; font: 1.35rem Georgia, serif; }
-  #glasswater-skills a { color: inherit; }
-  #analytics-settings { display: block; margin-top: .65rem; }
-  #glasswater-skills button { cursor: pointer; }
-  #glasswater-skills :global(#analytics-consent) { border-top: 1px solid #637b83; margin-top: .65rem; padding-top: .65rem; }
+<ExperienceShell experience={glasswater}>
+  <iframe id="glasswater-renderer" title={glasswater.title} srcdoc={scene} aria-describedby="glasswater-requirements"></iframe>
+  <span id="glasswater-requirements" hidden>{glasswater.browserRequirements}</span>
+</ExperienceShell>
+<script>
+  import chrome from "../styles/glasswater-embedded.css?raw";
 
-</style>
+  const frame = document.querySelector<HTMLIFrameElement>("#glasswater-renderer");
+  if (frame) {
+    function arrangeChrome() {
+      const scene = frame?.contentDocument;
+      if (scene?.URL !== "about:srcdoc" || scene.getElementById("embedded-chrome")) return;
+      const style = scene.createElement("style");
+      style.id = "embedded-chrome";
+      style.textContent = chrome;
+      scene.head.append(style);
+    }
+    frame.addEventListener("load", arrangeChrome);
+    arrangeChrome();
+  }
+</script>

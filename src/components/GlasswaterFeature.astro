@@ -1,11 +1,12 @@
 ---
-import glasswater from "../../data/glasswater.json";
+import { experiences } from "../lib/experiences";
+const { glasswater } = experiences;
 ---
 <article class="feature">
-  <img src="/glasswater/preview.webp" width="1200" height="630" alt="" fetchpriority="high"/>
+  <img src={glasswater.preview.image} width={glasswater.preview.width} height={glasswater.preview.height} alt="" fetchpriority="high"/>
   <div><p class="kicker">Free interactive showcase</p><h2>{glasswater.title}</h2>
   <p>Disturb the waves, move the sun and see how light reaches the seabed.</p>
-  <p class="actions"><a class="launch" href="/glasswater/">Experience Glasswater <span aria-hidden="true">↗</span></a>
+  <p class="actions"><a class="launch" href={glasswater.route}>Experience Glasswater <span aria-hidden="true">↗</span></a>
   <a href={glasswater.sourceUrl}>View source</a></p></div>
 </article>
 <style>

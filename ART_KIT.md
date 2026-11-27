@@ -16,3 +16,5 @@ The [standalone Glasswater package](prototypes/glasswater/lagoon/README.md) is M
 For the next scene, start with the closest existing renderer. Extract a simulation or asset factory when a second scene needs it. Both prototypes require WebGL 2. Browser, hardware and scene settings affect performance. GPU scene time may be unavailable through the browser’s timer-query extension.
 
 [Cinematic Skills](https://github.com/edmondyip/cinematic-skills) publishes six independent MIT-licensed skills based on the corrected Glasswater source. The library includes CPU reference modules, WebGL 2 integration guidance and a tide tank that combines the ocean, float physics and day/night modules. Three.js adapter guidance remains untested.
+
+Public cinematic demos follow the [Experience UI Guidelines](EXPERIENCE_UI_GUIDELINES.md). Glasswater is the first to use the shared shell. Beneath the Surface will adopt it when released.

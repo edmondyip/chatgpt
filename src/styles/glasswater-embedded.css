@@ -1,0 +1,58 @@
+/* Preserve the standalone document while giving its embedded chrome disjoint grid areas. */
+body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 245px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 12px 20px;
+  padding: clamp(12px, 2vw, 24px);
+}
+
+canvas {
+  position: absolute;
+  inset: 0;
+}
+
+header,
+footer,
+#controls {
+  position: relative;
+  inset: auto;
+  min-width: 0;
+}
+
+header {
+  grid-area: 1 / 1;
+}
+
+footer {
+  grid-area: 3 / 1 / 4 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 12px;
+}
+
+#fps {
+  overflow-wrap: anywhere;
+}
+
+#controls {
+  grid-area: 1 / 2 / 3 / 3;
+  align-self: start;
+  width: 100%;
+  max-height: 100%;
+  min-height: 0;
+}
+
+@media (max-width: 600px) {
+  body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #controls {
+    grid-area: 2 / 1;
+    align-self: end;
+    justify-self: end;
+    width: min(245px, 100%);
+    max-height: min(100%, 42dvh);
+  }
+}

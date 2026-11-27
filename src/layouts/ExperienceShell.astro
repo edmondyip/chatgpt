@@ -1,0 +1,98 @@
+---
+import support from "../../data/support.json";
+import ExperienceSkillsPanel from "../components/ExperienceSkillsPanel.astro";
+import PageHead from "../components/PageHead.astro";
+import type { Experience } from "../lib/experiences";
+interface Props { experience: Experience }
+const { experience } = Astro.props;
+const { title, description, preview, accent } = experience;
+const panelId = `${experience.id}-skills`;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <PageHead {title} {description} shareCard={{ image: preview.shareImage, alt: preview.alt }}/>
+</head>
+<body class="experience" style={accent ? `--experience-accent: ${accent}` : undefined}>
+  <nav aria-label="Experience toolbar">
+    <a href="/products/#experiences" class="toolbar-control gallery" aria-label="Back to the experience gallery" title="Back to the experience gallery">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 6-6 6 6 6M4 12h16"/></svg>
+      Gallery
+    </a>
+    <div class="actions">
+      <a href={experience.sourceUrl} class="toolbar-control icon-control" aria-label={`View ${title} source on GitHub`} title="View source on GitHub" target="_blank" rel="noopener">
+        <img src="/icons/github.svg" width="20" height="20" alt=""/>
+      </a>
+      {support.availability === "available" && <a href={support.checkoutUrl} class="toolbar-control icon-control" aria-label="Support the experiment" title="Support the experiment" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 8.6c0 4.1-8.8 9.4-8.8 9.4S3.2 12.7 3.2 8.6a4 4 0 0 1 8.8-1 4 4 0 0 1 8.8 1Z"/></svg>
+      </a>}
+      <button type="button" class="toolbar-control skills" data-skills-panel={panelId} aria-controls={panelId} aria-haspopup="dialog" title="Get the skills behind this experience">Get Skills</button>
+    </div>
+  </nav>
+  <main class="experience-stage" aria-label={title}>
+    <slot/>
+  </main>
+  <ExperienceSkillsPanel {experience} id={panelId}/>
+</body>
+</html>
+<style>
+  .experience {
+    --experience-ink: #f5f1e8;
+    --experience-panel: #172228f7;
+    --experience-accent: #e6e2d8;
+    --experience-serif: Georgia, "Times New Roman", serif;
+    --experience-sans: system-ui, sans-serif;
+    --line: #aebbc258;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
+    overflow: hidden;
+    background: #152b37;
+    color: var(--experience-ink);
+    font: 14px/1.4 var(--experience-sans);
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 12px;
+    padding: 4px clamp(8px, 2vw, 24px);
+    background: #101b20;
+    border-bottom: 1px solid var(--line);
+  }
+  .actions { display: flex; align-items: center; gap: 4px; }
+  .toolbar-control {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    min-height: 44px;
+    padding: 0 .55rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .toolbar-control:hover { background: #ffffff14; }
+  .toolbar-control :is(svg, img) { width: 20px; height: 20px; display: block; }
+  .icon-control { width: 44px; padding: 0; }
+  .icon-control img { filter: invert(1); }
+  .skills { background: var(--experience-accent); color: #172228; font-weight: 650; cursor: pointer; padding-inline: .8rem; }
+  .skills:hover { background: var(--experience-accent); border-color: currentColor; }
+  .experience :global(:focus-visible) { outline: 2px solid var(--experience-accent); outline-offset: 2px; }
+  .experience-stage { min-width: 0; min-height: 0; }
+  .experience-stage > :global(iframe) { display: block; width: 100%; height: 100%; border: 0; }
+</style>
+<script>
+  const opener = document.querySelector<HTMLButtonElement>("[data-skills-panel]");
+  const panel = document.getElementById(opener?.dataset.skillsPanel ?? "");
+  if (opener && panel instanceof HTMLDialogElement) {
+    opener.addEventListener("click", () => panel.showModal());
+  }
+</script>
