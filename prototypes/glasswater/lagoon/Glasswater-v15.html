@@ -95,8 +95,19 @@ vec2 capillarySlope(vec2 q,float footprint){float c=cos(windAngle),sn=sin(windAn
  if(footprint*171.31572<2.8){micro+=vec2(0.573127,0.819467)*(0.03746*cos(dot(vec2(98.185623,140.387534),u)-waveTime*45.30647+0.16943)*(1.-smoothstep(1.0,2.8,footprint*171.31572)));}
  float patchGain=.55+.65*noise(u*.61+vec2(waveTime*.08,0.));vec2 grad=transpose(rot)*micro*patchGain*sqrt(max(0.,windSpeed));return grad;}
 vec3 lightColor(int i){if(i==0)return vec3(1.,.53,.18);if(i==1)return vec3(1.,.80,.39);if(i==2)return vec3(.24,.72,1.);return vec3(1.,.32,.10);}
-vec3 sky(vec3 d){float y=max(0.,d.y),sd=max(0.,dot(d,SUN)),md=max(0.,dot(d,MOON));float warm=twilight;float noon=daylight*smoothstep(.4,.95,SUN.y);vec3 horizon=mix(vec3(.012,.021,.045),mix(vec3(.16,.51,1.18),vec3(.78,.36,.13),warm),daylight);vec3 zenith=mix(vec3(.002,.005,.019),mix(vec3(.012,.115,.62),vec3(.045,.13,.35),warm),daylight);vec3 col=mix(horizon,zenith,pow(y,.48));col+=warm*daylight*vec3(.48,.20,.045)*pow(sd,10.)*(1.-.7*y);if(d.y>.015){vec2 q=d.xz/(d.y+.15);float f=fbm(q*2.5+vec2(t*.014,0.));float cloud=smoothstep(.56,.77,f)*smoothstep(.015,.09,y)*exp(-y*.8);vec3 cl=mix(vec3(.008,.013,.033),mix(vec3(.27,.40,.57),vec3(.90,.42,.16),warm*pow(sd,3.)),daylight);col=mix(col,mix(cl,vec3(.85,.92,1.05),noon*.75),cloud*mix(.58,.24,noon));if(daylight<.999){vec3 dr=normalize(d);vec2 starUV=vec2(atan(dr.x,-dr.z),asin(clamp(dr.y,-1.,1.)))*180.;vec2 cell=floor(starUV),fr=fract(starUV)-.5;float h=hash(cell);float star=(1.-smoothstep(.025,.13,length(fr)))*step(.985,h);col+=vec3(.40,.57,.85)*star*(1.-daylight)*(1.-cloud)*smoothstep(.02,.15,y);}}
-float sunVis=smoothstep(-.03,.025,SUN.y);col+=sunVis*lightPower*(mix(vec3(38.,36.,31.),vec3(25.,17.,8.),warm)*smoothstep(.99965,.99992,sd)+mix(vec3(.85,.93,1.05),vec3(1.5,.68,.20),warm)*pow(sd,120.));col+=noon*vec3(.012,.027,.055)*(1.-y);float moonVis=smoothstep(-.025,.025,MOON.y);col+=moonVis*(1.-daylight*.88)*(vec3(2.4,2.7,3.1)*smoothstep(.99972,.99986,md)+vec3(.035,.055,.12)*pow(md,90.));return col;}
+vec3 skyAtmosphere(vec3 d){float y=max(0.,d.y),sd=max(0.,dot(d,SUN)),md=max(0.,dot(d,MOON));float warm=twilight;float noon=daylight*smoothstep(.4,.95,SUN.y);vec3 horizon=mix(vec3(.012,.021,.045),mix(vec3(.16,.51,1.18),vec3(.78,.36,.13),warm),daylight);vec3 zenith=mix(vec3(.002,.005,.019),mix(vec3(.012,.115,.62),vec3(.045,.13,.35),warm),daylight);vec3 col=mix(horizon,zenith,pow(y,.48));col+=warm*daylight*vec3(.48,.20,.045)*pow(sd,10.)*(1.-.7*y);if(d.y>.015){vec2 q=d.xz/(d.y+.15);float f=fbm(q*2.5+vec2(t*.014,0.));float cloud=smoothstep(.56,.77,f)*smoothstep(.015,.09,y)*exp(-y*.8);vec3 cl=mix(vec3(.008,.013,.033),mix(vec3(.27,.40,.57),vec3(.90,.42,.16),warm*pow(sd,3.)),daylight);col=mix(col,mix(cl,vec3(.85,.92,1.05),noon*.75),cloud*mix(.58,.24,noon));if(daylight<.999){vec3 dr=normalize(d);vec2 starUV=vec2(atan(dr.x,-dr.z),asin(clamp(dr.y,-1.,1.)))*180.;vec2 cell=floor(starUV),fr=fract(starUV)-.5;float h=hash(cell);float star=(1.-smoothstep(.025,.13,length(fr)))*step(.985,h);col+=vec3(.40,.57,.85)*star*(1.-daylight)*(1.-cloud)*smoothstep(.02,.15,y);}}
+float sunVis=smoothstep(-.03,.025,SUN.y),moonVis=smoothstep(-.025,.025,MOON.y);
+col+=sunVis*lightPower*mix(vec3(.85,.93,1.05),vec3(1.5,.68,.20),warm)*pow(sd,120.);
+col+=noon*vec3(.012,.027,.055)*(1.-y);
+col+=moonVis*(1.-daylight*.88)*vec3(.035,.055,.12)*pow(md,90.);return col;}
+// Only real sky rays see the disks. Fog uses the atmosphere alone.
+vec3 skyDisks(vec3 d){
+ float horizonClip=smoothstep(0.,.002,d.y);
+ float sun=smoothstep(-.03,.025,SUN.y)*smoothstep(.99965,.99992,dot(d,SUN));
+ float moon=smoothstep(-.025,.025,MOON.y)*smoothstep(.99972,.99986,dot(d,MOON));
+ return horizonClip*(sun*lightPower*mix(vec3(38.,36.,31.),vec3(25.,17.,8.),twilight)+moon*(1.-daylight*.88)*vec3(2.4,2.7,3.1));
+}
+vec3 sky(vec3 d){return skyAtmosphere(d)+skyDisks(d);}
 vec3 tone(vec3 c){c*=exp2(exposure);return pow(max(vec3(0),c/(c+vec3(.82))),vec3(.4545));}
 `;
 const skyV=`#version 300 es
@@ -131,7 +142,7 @@ const ballCommon=`
 float sphereHit(vec3 ro,vec3 rd,vec4 ball){vec3 oc=ro-ball.xyz;float b=dot(oc,rd),c=dot(oc,oc)-ball.w*ball.w,h=b*b-c;if(h<0.)return -1.;float q=-b-sqrt(h);return q>.006?q:-1.;}
 // Finite-width GGX specular lobe with Smith masking and dielectric Fresnel.
 float waterSpec(vec3 n,vec3 v,vec3 l,float alpha){float nl=max(dot(n,l),0.),nv=max(dot(n,v),.001);if(nl<=0.)return 0.;vec3 h=normalize(v+l);float nh=max(dot(n,h),0.),vh=max(dot(v,h),0.);float a2=alpha*alpha,d=nh*nh*(a2-1.)+1.;float D=a2/(3.14159265*d*d);float gv=2.*nv/(nv+sqrt(a2+(1.-a2)*nv*nv));float gl=2.*nl/(nl+sqrt(a2+(1.-a2)*nl*nl));float F=.0204+.9796*pow(1.-vh,5.);return min(24.,D*gv*gl*F/(4.*nv));}
-vec3 ballShade(vec3 p,vec3 n,vec3 v,int i){vec3 base=ballColors[i];float band=(1.-smoothstep(.015,.04,abs(n.y-.13)))+(1.-smoothstep(.009,.027,abs(n.y+.12)));base=mix(base,vec3(.68,.42,.13),clamp(band,0.,1.));vec3 refl=reflect(-v,n);float spec=pow(max(0.,dot(refl,SUN)),110.);float f=.20+.80*pow(1.-max(0.,dot(v,n)),5.);vec3 env=sky(vec3(refl.x,max(.0,refl.y),refl.z));float bandLight=smoothstep(.65,.95,n.y)*.55+(1.-smoothstep(.02,.08,abs(n.y-.13)))*.85+underwaterLightsOn*smoothstep(.35,.95,-n.y)*1.1;return mix(base*(.065+daylight*(.18+1.85*lightPower*max(0.,dot(n,SUN)))),env,.12+f*.38)+daylight*lightPower*vec3(4.5,3.2,1.8)*spec+lightColor(i)*lamps*lightPower*bandLight*3.5;}
+vec3 ballShade(vec3 p,vec3 n,vec3 v,int i){vec3 base=ballColors[i];float band=(1.-smoothstep(.015,.04,abs(n.y-.13)))+(1.-smoothstep(.009,.027,abs(n.y+.12)));base=mix(base,vec3(.68,.42,.13),clamp(band,0.,1.));vec3 refl=reflect(-v,n);float spec=pow(max(0.,dot(refl,SUN)),110.);float f=.20+.80*pow(1.-max(0.,dot(v,n)),5.);vec3 env=sky(refl);float bandLight=smoothstep(.65,.95,n.y)*.55+(1.-smoothstep(.02,.08,abs(n.y-.13)))*.85+underwaterLightsOn*smoothstep(.35,.95,-n.y)*1.1;return mix(base*(.065+daylight*(.18+1.85*lightPower*max(0.,dot(n,SUN)))),env,.12+f*.38)+daylight*lightPower*vec3(4.5,3.2,1.8)*spec+lightColor(i)*lamps*lightPower*bandLight*3.5;}
 `;
 const seaF=`#version 300 es
 `+glsl+ballCommon+`in vec3 p;out vec4 O;
@@ -141,7 +152,7 @@ void main(){
  // Random-phase capillary slopes with footprint filtering.
  float footprint=max(length(dFdx(q)),length(dFdy(q)));vec2 grad=capillarySlope(q,footprint);dx+=grad.x;dz+=grad.y;
  vec3 n=normalize(vec3(-dx,1.,-dz));vec3 reflected=reflect(-v,n);float fresnel=.0204+.9796*pow(1.-clamp(dot(v,n),0.,1.),5.);
- vec3 rr=sky(vec3(reflected.x,max(.0,reflected.y),reflected.z));float shadow=1.;vec2 sd=SUN.xz/max(.001,length(SUN.xz));float h=p.y;
+ vec3 rr=sky(reflected);float shadow=1.;vec2 sd=SUN.xz/max(.001,length(SUN.xz));float h=p.y;
  if(dist<32.&&SUN.y>0.){int samples=SUN.y>.78?2:4;for(int i=1;i<=4;i++){if(i>samples)break;float a=float(i)*1.12/float(samples);float excess=heightAt(q+sd*a)-h-a*SUN.y/max(.001,length(SUN.xz));shadow=min(shadow,1.-smoothstep(.015,.105,excess));}}
  if(dist<26.){float nearest=100.;for(int i=0;i<4;i++){float tHit=sphereHit(p+vec3(0,.025,0),reflected,balls[i]);if(tHit>0.&&tHit<nearest){nearest=tHit;vec3 hit=p+vec3(0,.025,0)+reflected*tHit;rr=ballShade(hit,normalize(hit-balls[i].xyz),-reflected,i);}float sh=sphereHit(p+vec3(0,.035,0),SUN,balls[i]);if(sh>0.&&SUN.y>0.){vec3 oc=balls[i].xyz-p;float perp=length(oc-SUN*dot(oc,SUN));float soft=smoothstep(balls[i].w*.28,balls[i].w*1.12,perp);shadow=min(shadow,mix(.52,1.,soft));}}}
  vec3 ray=refract(-v,n,1./1.333);float path=1./max(.14,-ray.y);
@@ -186,7 +197,7 @@ void main(){
  }}
  // Unresolved ripple slopes widen the lobe at distance rather than aliasing.
  float unresolved=smoothstep(.03,.23,footprint)*.045*sqrt(max(0.,windSpeed));float alpha=clamp(sqrt(roughness*roughness+unresolved*unresolved),.025,.30);
- float broadAlpha=clamp(sqrt(alpha*alpha+.045+.012*windSpeed),.12,.32);vec3 glitterN=normalize(vec3(-dx-grad.x*.5,1.,-dz-grad.y*.5));float sunSpec=(waterSpec(n,v,SUN,alpha)*.92+waterSpec(n,v,SUN,broadAlpha)*.012+noon*.025*waterSpec(glitterN,v,SUN,max(.09,alpha)))*shadow;float moonSpec=waterSpec(n,v,MOON,max(alpha,.055))*smoothstep(-.02,.03,MOON.y);
+ float broadAlpha=clamp(sqrt(alpha*alpha+.045+.012*windSpeed),.12,.32);vec3 glitterN=normalize(vec3(-dx-grad.x*.5,1.,-dz-grad.y*.5));float sunSpec=(waterSpec(n,v,SUN,alpha)*.92+waterSpec(n,v,SUN,broadAlpha)*.012+noon*.025*waterSpec(glitterN,v,SUN,max(.09,alpha)))*shadow*smoothstep(0.,.025,SUN.y);float moonSpec=waterSpec(n,v,MOON,max(alpha,.055))*smoothstep(0.,.03,MOON.y);
  vec3 col=mix(sub,rr,fresnel)+daylight*lightPower*mix(vec3(31.,30.,27.),vec3(8.5,4.6,1.8),twilight)*sunSpec+(1.-daylight)*lightPower*vec3(.65,.85,1.4)*moonSpec;
  if(lamps>.001&&dist<35.){for(int i=0;i<4;i++){vec3 lp=balls[i].xyz+vec3(0.,balls[i].w*.6,0.);vec3 delta=lp-p;float d2=dot(delta,delta);vec3 L=normalize(delta);float angular=clamp(balls[i].w/sqrt(max(.15,d2))*.55,.0,.20);float lampAlpha=sqrt(alpha*alpha+angular*angular);float sparkle=waterSpec(n,v,L,lampAlpha)/( .22+d2*.55);float diff=max(0.,dot(n,L))/(.36+d2*1.6);vec3 transmission=lightColor(i)*trans*exp(-d2*2.1)*.10;col+=lamps*lightPower*(lightColor(i)*(sparkle*2.8+diff*.12)+transmission);}}
 
@@ -203,7 +214,7 @@ void main(){
  vec3 foamColor=mix(vec3(.08,.13,.19),vec3(.88,.94,.90)*(.72+.38*max(SUN.y,0.)*lightPower),daylight);
  col=mix(col,foamColor,foam*.84);
  float wake=exp(-dot(q-gesture.xy,q-gesture.xy)/.20)*gesture.z;col+=daylight*vec3(.25,.47,.48)*wake*smoothstep(.06,.5,slope)*.28;
- float fog=1.-exp(-dist*mix(.013,.009,noon));fog=max(fog,smoothstep(95.,260.,dist));col=mix(col,sky(normalize(vec3(-v.x,max(0.,-v.y),-v.z))),fog);O=vec4(tone(col),1.);
+ float fog=1.-exp(-dist*mix(.013,.009,noon));fog=max(fog,smoothstep(95.,260.,dist));col=mix(col,skyAtmosphere(-v),fog);O=vec4(tone(col),1.);
 }`;
 const foamF=`#version 300 es
 `+glsl+`in vec2 uv;out vec4 O;uniform sampler2D prevFoam;uniform float foamDt;

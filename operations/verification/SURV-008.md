@@ -26,3 +26,13 @@ The owner separately reported the readings below. Their browser and hardware are
 | V15 | 910 × 1238 | 120 | 6.4 ms |
 
 Physical phones, Safari, long-run thermal performance and live analytics ingestion remain unverified. WebGL 2 is required.
+
+## Horizon correction and social cut
+
+The sun and moon disks appeared stretched down into the sea when the fog shader sampled the full sky on a flattened view ray. The corrected fog samples only atmospheric radiance. The sky and reflections evaluate the disks on their original rays and clip below the horizon. The water’s direct specular lobes fade through the crossing. The existing solar flare already fades continuously to zero at the horizon.
+
+Compared 25 fixed-camera samples per crossing, spaced 1.5 simulated minutes apart around sunrise, sunset, moonrise and moonset. Inspected before and after render strips for all four crossings. The stretched disk cleared, and the moving water kept its sun and moon glitter. The largest neighboring-sample change in mean water luminance fell from 13.24 to 7.24 at sunrise, 15.88 to 9.70 at sunset, 5.21 to 2.65 at moonrise and 0.51 to 0.32 at moonset on an 8-bit scale.
+
+The corrected standalone and editable source rendered pixel-identical frames at the same time and settings. Chromium checks repeated at desktop and emulated touch sizes. All eight site tests, Astro checks and production build passed.
+
+The social cut uses the corrected renderer. It decoded all 600 frames at 1920 × 1080, 60 FPS and 10.000 seconds. The 9.11 MB MP4 uses H.264, yuv420p and faststart. The original 30-second file retained the same SHA-256.

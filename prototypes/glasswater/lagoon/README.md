@@ -8,7 +8,7 @@ Sweep a hand through a sunlit lagoon. Turn the light down and watch the floating
 
 ## Quick start
 
-- Open `Glasswater-v15.html` directly in a WebGL 2 browser. This is the approved, self-contained V15 visual reference.
+- Open `Glasswater-v15.html` directly in a WebGL 2 browser. This is the self-contained V15 visual reference with the horizon correction.
 - To edit or embed the project, serve this directory with `python3 -m http.server 8080` and open <http://localhost:8080/>. The editable version loads native ES modules. It needs no build step, npm install, remote assets or network service.
 - Move the mouse or sweep one finger to make waves. Drag with the mouse or move two fingers to orbit. Use Light / Environment and Water / Optics to adjust the scene.
 
@@ -20,7 +20,7 @@ Sweep a hand through a sunlit lagoon. Turn the light down and watch the floating
 
 - The CPU advances two damped height grids at a fixed timestep. Pointer strokes add velocity disturbances. Analytic swells drive the background motion and interact with the near grid around the spheres. The renderer samples the two grids from packed textures.
 - The spheres follow sampled surface height and slope. A six-pass horizontal contact solver separates overlapping spheres and applies an impulse when they move toward one another.
-- WebGL 2 draws the procedural sky, displaced ocean mesh and spheres. An offscreen foam pass preserves short-lived surface detail. The seabed light map projects sunlight through local surface normals, accumulating caustics and attenuation from the spheres. After dark, shader-based coloured light illuminates the water below the floats.
+- WebGL 2 draws the procedural sky, displaced ocean mesh and spheres. An offscreen foam pass preserves short-lived surface detail. The seabed light map projects sunlight through local surface normals, accumulating caustics and attenuation from the spheres. After dark, shader-based coloured light illuminates the water below the floats. Distant fog samples the atmosphere without the sun or moon disks. Water reflections use the original reflected ray and a separate specular lobe.
 - The offscreen passes limit their update rates. The visible pass caps render resolution and reduces it after sustained slow frames. GPU timings are optional and use the browser's disjoint timer query extension.
 
 ![Sunset reflected across the lagoon](media/lagoon-dusk.webp)

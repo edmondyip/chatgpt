@@ -7,7 +7,8 @@ const puppeteer = require(process.env.PUPPETEER_MODULE);
 
 const source = path.join(__dirname, "../../../prototypes/glasswater/lagoon/Glasswater-v15.html");
 const output = path.resolve(process.argv[2] || "glasswater-showcase.mp4");
-const seconds = Number(process.env.CAPTURE_SECONDS ?? 30);
+const social = process.argv.includes("--social");
+const seconds = Number(process.env.CAPTURE_SECONDS ?? (social ? 10 : 30));
 const fps = 60;
 
 async function capture() {
@@ -57,14 +58,20 @@ async function capture() {
     const encoded = once(encoder, "close");
     encoder.stdin.on("error", (error) => errors.push(error.message));
     for (let frame = 0; frame < seconds * fps; ++frame) {
-      const jpeg = await page.evaluate((frame) => {
+      const jpeg = await page.evaluate((frame, social) => {
         const t = frame / 60;
         const smooth = (a, b) => {
           const x = Math.min(1, Math.max(0, (t - a) / (b - a)));
           return x * x * (3 - 2 * x);
         };
         const canvas = document.querySelector("canvas");
-        if (t < 2.5) {
+        if (social) {
+          const hour = 6.025 + .48 * smooth(0, 1.65) + 5.495 * smooth(1.55, 2.2)
+            + 5.35 * smooth(3.45, 4.15) + .56 * smooth(4.15, 5.75) + 4.09 * smooth(5.72, 6.4);
+          window.artKitLight(hour, .14 - .14 * smooth(1.55, 2.2) + .18 * smooth(3.45, 4.15) + .24 * smooth(5.72, 6.4));
+          window.captureCamera(-16 + 7 * smooth(0, 2) + 22 * smooth(2, 5) + 4 * smooth(6, 10),
+            -3 + 9 * smooth(1.5, 2.2) - 8 * smooth(3.4, 4.4) + 7 * smooth(5.7, 6.8));
+        } else if (t < 2.5) {
           window.artKitLight(22, .65);
           window.captureCamera(-14 + 9 * smooth(0, 2.5), 10 - 4 * smooth(0, 2.5));
         } else {
@@ -73,7 +80,9 @@ async function capture() {
           window.captureCamera(13 - 26 * smooth(2.5, 12) + 19 * smooth(13, 26), 5 - 8 * smooth(11, 18) + 12 * smooth(20, 28));
         }
         window.captureClock = (frame + 1) * 1000 / 60;
-        for (const [start, end, z] of [[5, 7, 1.1], [8, 9.6, -.35], [17.4, 19, .8], [23, 24.8, 1.3]]) {
+        const sweeps = social ? [[2.13, 3.13, .9], [6.2, 7.5, 1.2]]
+          : [[5, 7, 1.1], [8, 9.6, -.35], [17.4, 19, .8], [23, 24.8, 1.3]];
+        for (const [start, end, z] of sweeps) {
           if (t >= start && t < end) {
             const f = smooth(start, end);
             const [clientX, clientY] = window.artKitProject(-3.8 + 7.6 * f, z + .6 * Math.sin(f * 6.28));
@@ -81,18 +90,19 @@ async function capture() {
           }
         }
         window.captureNext(window.captureClock);
-        if (t < 26) return canvas.toDataURL("image/jpeg", .96).split(",")[1];
+        const titleAt = social ? 8 : 26;
+        if (t < titleAt) return canvas.toDataURL("image/jpeg", .96).split(",")[1];
 
         const title = window.captureTitle ??= document.createElement("canvas");
         title.width = canvas.width;
         title.height = canvas.height;
         const ctx = title.getContext("2d");
         ctx.drawImage(canvas, 0, 0, title.width, title.height);
-        ctx.globalAlpha = smooth(26, 26.8);
+        ctx.globalAlpha = smooth(titleAt, titleAt + (social ? .45 : .8));
         ctx.fillStyle = "#020a13";
         ctx.globalAlpha *= .32;
         ctx.fillRect(0, 0, title.width, title.height);
-        ctx.globalAlpha = smooth(26.15, 27.05);
+        ctx.globalAlpha = smooth(titleAt + (social ? .04 : .15), titleAt + (social ? .54 : 1.05));
         ctx.fillStyle = "#fff8e5";
         ctx.textAlign = "center";
         ctx.scale(title.width / 1920, title.height / 1080);
@@ -103,7 +113,7 @@ async function capture() {
         ctx.letterSpacing = ".5px";
         ctx.fillText("An interactive ocean, built entirely in code.", 960, 615);
         return title.toDataURL("image/jpeg", .96).split(",")[1];
-      }, frame);
+      }, frame, social);
       assert.deepEqual(errors, []);
       if (!encoder.stdin.write(Buffer.from(jpeg, "base64"))) await once(encoder.stdin, "drain");
       if ((frame + 1) % 300 === 0) console.log(`Rendered ${(frame + 1) / fps} s`);
